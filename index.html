@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CT — Phase III Council Briefing</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #0d1520;
+  --navy-mid: #111e2e;
+  --navy-light: #162336;
+  --navy-border: #1e2f42;
+  --gold: #c9a84c;
+  --gold-light: #e2c470;
+  --gold-dim: #6b5520;
+  --gold-glow: rgba(201,168,76,0.12);
+  --gold-glow-strong: rgba(201,168,76,0.25);
+  --silver: #8a9bb0;
+  --silver-light: #b8c8d8;
+  --text: #d8e4f0;
+  --text-muted: #7a90a8;
+  --text-dim: #435566;
+  --red: #8b1a1a;
+  --red-bright: #c0392b;
+  --white: #f0f4f8;
+  --culmination: #4a0808;
+  --culmination-border: #8b1a1a;
+  --culmination-gold: #ff6b35;
+}
+
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 400;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.4;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  background: linear-gradient(180deg, #070e18 0%, var(--navy) 100%);
+  padding: 80px 32px 60px;
+  border-bottom: 1px solid var(--navy-border);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 70%),
+    repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(201,168,76,0.015) 80px, rgba(201,168,76,0.015) 81px);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.ct-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.ct-emblem {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--gold-dim);
+  background: var(--gold-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ct-emblem svg { width: 28px; height: 28px; }
+
+.ct-badge-text {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.hero-eyebrow {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--gold-dim);
+}
+
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(40px, 7vw, 80px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.hero-title span {
+  color: var(--gold);
+}
+
+.hero-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(14px, 2.5vw, 22px);
+  font-weight: 400;
+  color: var(--silver);
+  letter-spacing: 6px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.hero-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.hero-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-dim), transparent);
+}
+
+.hero-divider-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+
+.hero-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.hero-meta-item {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.classified-badge {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  padding: 5px 14px;
+  background: var(--gold-glow);
+  text-transform: uppercase;
+}
+
+/* Navigation */
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(7, 14, 24, 0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--navy-border);
+}
+
+.nav {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 32px;
+}
+
+.nav::-webkit-scrollbar { display: none; }
+
+.nav-btn {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 18px 22px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-btn:hover { color: var(--silver); }
+.nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+.nav-btn.culmination-btn { color: var(--culmination-border) !important; }
+.nav-btn.culmination-btn.active { color: #e05a3a !important; border-bottom-color: #e05a3a !important; }
+
+/* Main content */
+.main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 32px 100px;
+}
+
+.section { display: none; animation: fadeUp 0.35s ease; }
+.section.active { display: block; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section headers */
+.sec-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.sec-num {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 3px;
+}
+
+.sec-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--navy-border), transparent);
+}
+
+.sec-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(26px, 4vw, 44px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 36px;
+  letter-spacing: 1px;
+}
+
+.sec-title span { color: var(--gold); }
+
+/* Body text */
+p {
+  font-family: 'Crimson Text', serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: #a8bcd0;
+  margin-bottom: 22px;
+}
+
+strong { color: var(--gold-light); font-weight: 600; }
+em { color: var(--silver-light); font-style: italic; }
+
+/* Callout blocks */
+.callout {
+  border-left: 3px solid var(--gold-dim);
+  background: var(--navy-light);
+  padding: 22px 28px;
+  margin: 36px 0;
+  position: relative;
+}
+
+.callout::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-dim), transparent);
+}
+
+.callout p { margin: 0; color: var(--silver-light); font-style: italic; font-size: 17px; }
+
+.callout-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* Mission block */
+.mission-block {
+  border: 1px solid var(--gold-dim);
+  background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+  padding: 48px 40px;
+  margin: 40px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, var(--gold-glow), transparent);
+  pointer-events: none;
+}
+
+.mission-block::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.mission-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.mission-text {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--white);
+  position: relative;
+}
+
+.mission-text span { color: var(--gold); }
+
+/* Three pillars */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin: 40px 0;
+}
+
+.pillar {
+  background: var(--navy-light);
+  padding: 32px 24px;
+  border-top: 2px solid var(--navy-border);
+  position: relative;
+  transition: border-color 0.25s;
+  overflow: hidden;
+}
+
+.pillar::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--navy-border);
+}
+
+.pillar:hover { border-top-color: var(--gold); }
+
+.pillar-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.pillar-name {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+
+.pillar-tag {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--silver);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--navy-border);
+}
+
+.pillar p {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.65;
+}
+
+/* Pipeline funnel */
+.funnel { margin: 40px 0; }
+
+.funnel-step {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--navy-light);
+  border: 1px solid var(--navy-border);
+  border-left: 3px solid var(--navy-border);
+  padding: 18px 24px;
+  margin-bottom: 2px;
+  transition: border-left-color 0.2s;
+}
+
+.funnel-step:hover { border-left-color: var(--gold); }
+
+.funnel-num {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  min-width: 28px;
+}
+
+.funnel-name {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  color: var(--white);
+  min-width: 110px;
+  font-weight: 600;
+}
+
+.funnel-desc {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  color: var(--text-muted);
+  flex: 1;
+  letter-spacing: 0.3px;
+}
+
+.funnel-arrow {
+  color: var(--gold-dim);
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* Changes grid */
+.changes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin: 36px 0;
+}
+
+.change-card {
+  background: var(--navy-light);
+  padding: 28px;
+  border-top: 2px solid var(--navy-border);
+}
+
+.change-card-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--navy-border);
+}
+
+.staying .change-card-label { color: #4a9e6a; }
+.retiring .change-card-label { color: var(--red-bright); }
+.adjusting .change-card-label { color: var(--gold); }
+.building .change-card-label { color: #5b9bd5; }
+
+.change-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  letter-spacing: 0.3px;
+}
+
+.change-item::before {
+  content: '—';
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+/* Tasks */
+.task-person { margin-bottom: 48px; }
+
+.task-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--navy-border);
+}
+
+.task-rank {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--gold-dim);
+  background: var(--gold-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  color: var(--gold);
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.task-name {
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+
+.task-role {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.task-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--navy-border);
+  align-items: flex-start;
+}
+
+.task-item:last-child { border-bottom: none; }
+
+.task-check {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--navy-border);
+  background: var(--navy);
+  flex-shrink: 0;
+  margin-top: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.task-check:hover { border-color: var(--gold-dim); }
+
+.task-check.done {
+  background: rgba(74, 158, 106, 0.15);
+  border-color: #4a9e6a;
+}
+
+.task-check.done::after {
+  content: '✓';
+  font-size: 12px;
+  color: #4a9e6a;
+}
+
+.task-content { flex: 1; }
+
+.task-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+
+.task-detail {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+}
+
+.priority {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+.p-high { color: var(--red-bright); border: 1px solid var(--red); background: rgba(139,26,26,0.15); }
+.p-med { color: var(--gold); border: 1px solid var(--gold-dim); background: var(--gold-glow); }
+.p-low { color: var(--text-dim); border: 1px solid var(--navy-border); }
+
+/* Timeline */
+.timeline {
+  margin: 40px 0;
+  padding-left: 36px;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--gold-dim), var(--navy-border));
+}
+
+.t-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.t-item::before {
+  content: '';
+  position: absolute;
+  left: -32px;
+  top: 10px;
+  width: 10px;
+  height: 10px;
+  background: var(--gold);
+  border: 2px solid var(--navy);
+  border-radius: 50%;
+}
+
+.t-week {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.t-title {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  color: var(--white);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.t-desc {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  letter-spacing: 0.3px;
+}
+
+/* Closing */
+.closing-crest {
+  text-align: center;
+  margin: 48px 0 32px;
+}
+
+.closing-box {
+  border: 1px solid var(--navy-border);
+  background: var(--navy-light);
+  padding: 56px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.closing-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+
+.closing-big {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(20px, 4vw, 36px);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--white);
+  margin-bottom: 24px;
+  letter-spacing: 2px;
+}
+
+.closing-big span { color: var(--gold); }
+
+.closing-sig {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--navy-border);
+}
+
+/* ===== OPERATION CULMINATION ===== */
+.culmination-hero {
+  background: linear-gradient(135deg, #0a0404, #150808, #0a0404);
+  border: 1px solid var(--culmination-border);
+  padding: 56px 40px;
+  margin: 0 0 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.culmination-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(192,57,43,0.08), transparent);
+}
+
+.culmination-hero::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--culmination-border), transparent);
+}
+
+.culm-eyebrow {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--culmination-border);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.culm-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px, 5vw, 56px);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 3px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.culm-sub {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(14px, 2.5vw, 20px);
+  color: var(--culmination-border);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.culm-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+}
+
+.culm-divider-line {
+  width: 60px;
+  height: 1px;
+  background: var(--culmination-border);
+}
+
+.culm-divider-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--culmination-border);
+  text-transform: uppercase;
+}
+
+.culm-body p {
+  font-family: 'Crimson Text', serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: #a08080;
+  margin-bottom: 22px;
+}
+
+.culm-body strong { color: #d4a0a0; }
+
+.culm-callout {
+  border-left: 3px solid var(--culmination-border);
+  background: rgba(20, 4, 4, 0.6);
+  padding: 22px 28px;
+  margin: 36px 0;
+  position: relative;
+}
+
+.culm-callout p { color: #c08080; margin: 0; font-style: italic; }
+
+.what-happens {
+  margin: 40px 0;
+}
+
+.what-title {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  color: var(--white);
+  margin-bottom: 24px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.event-phase {
+  display: flex;
+  gap: 20px;
+  background: rgba(20, 4, 4, 0.5);
+  border: 1px solid var(--culmination-border);
+  border-left: 3px solid var(--culmination-border);
+  padding: 20px 24px;
+  margin-bottom: 2px;
+}
+
+.event-num {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--culmination-border);
+  min-width: 36px;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.event-content { flex: 1; }
+
+.event-title {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  color: var(--white);
+  font-weight: 600;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.event-desc {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  color: #8a6060;
+  line-height: 1.65;
+  letter-spacing: 0.3px;
+}
+
+/* Vote section */
+.vote-section {
+  border: 1px solid var(--culmination-border);
+  background: rgba(10, 4, 4, 0.8);
+  padding: 40px;
+  margin: 48px 0;
+  position: relative;
+}
+
+.vote-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--culmination-border), transparent);
+}
+
+.vote-title {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.vote-sub {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--culmination-border);
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+}
+
+.vote-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.vote-option {
+  border: 1px solid;
+  padding: 28px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.vote-option.pivot-opt {
+  border-color: var(--gold-dim);
+  background: rgba(201, 168, 76, 0.04);
+}
+
+.vote-option.culm-opt {
+  border-color: var(--culmination-border);
+  background: rgba(139, 26, 26, 0.04);
+}
+
+.vote-option.pivot-opt:hover, .vote-option.pivot-opt.selected {
+  background: rgba(201, 168, 76, 0.1);
+  border-color: var(--gold);
+}
+
+.vote-option.culm-opt:hover, .vote-option.culm-opt.selected {
+  background: rgba(139, 26, 26, 0.15);
+  border-color: var(--red-bright);
+}
+
+.vote-opt-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.pivot-opt .vote-opt-label { color: var(--gold-dim); }
+.culm-opt .vote-opt-label { color: var(--culmination-border); }
+
+.vote-opt-title {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.pivot-opt .vote-opt-title { color: var(--gold-light); }
+.culm-opt .vote-opt-title { color: #d4a0a0; }
+
+.vote-opt-desc {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+}
+
+.pivot-opt .vote-opt-desc { color: var(--text-muted); }
+.culm-opt .vote-opt-desc { color: #8a6060; }
+
+.vote-indicator {
+  width: 20px;
+  height: 20px;
+  border: 1px solid;
+  border-radius: 50%;
+  margin: 16px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  transition: all 0.2s;
+}
+
+.pivot-opt .vote-indicator { border-color: var(--gold-dim); color: transparent; }
+.culm-opt .vote-indicator { border-color: var(--culmination-border); color: transparent; }
+.pivot-opt.selected .vote-indicator { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.1); }
+.culm-opt.selected .vote-indicator { border-color: var(--red-bright); color: var(--red-bright); background: rgba(139,26,26,0.1); }
+
+.vote-tally {
+  background: rgba(10, 4, 4, 0.6);
+  border: 1px solid var(--navy-border);
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.tally-item {
+  text-align: center;
+}
+
+.tally-num {
+  font-family: 'Cinzel', serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.tally-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.tally-pivot { color: var(--gold); }
+.tally-culm { color: var(--culmination-border); }
+.tally-needed { color: var(--text-muted); }
+
+.vote-note {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+  text-align: center;
+  margin-top: 16px;
+  line-height: 1.6;
+}
+
+.culmination-close {
+  border: 1px solid var(--culmination-border);
+  background: linear-gradient(135deg, #0a0404, #100606);
+  padding: 48px 40px;
+  text-align: center;
+  position: relative;
+  margin-top: 48px;
+}
+
+.culmination-close::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--culmination-border), transparent);
+}
+
+.culmination-close .big {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(20px, 3.5vw, 34px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.4;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.culmination-close .big span { color: var(--culmination-border); }
+
+.culmination-close p {
+  font-family: 'Crimson Text', serif;
+  font-size: 16px;
+  color: #8a6060;
+  font-style: italic;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+@media (max-width: 620px) {
+  .pillars { grid-template-columns: 1fr; }
+  .changes-grid { grid-template-columns: 1fr; }
+  .vote-options { grid-template-columns: 1fr; }
+  .main { padding: 40px 20px 80px; }
+  .nav { padding: 0 16px; }
+  .hero { padding: 60px 20px 48px; }
+  .mission-block, .closing-box, .culmination-hero { padding: 40px 24px; }
+  .vote-section { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="ct-badge">
+      <div class="ct-emblem">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 2L16 8H22L17 12L19 18L14 14L9 18L11 12L6 8H12L14 2Z" fill="#c9a84c" opacity="0.8"/>
+          <path d="M14 6L8 24H20L14 6Z" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="ct-badge-text">Cross Termination — Internal Document</div>
+    </div>
+    <div class="hero-eyebrow">Council Briefing — Classified</div>
+    <div class="hero-title">PHASE <span>III</span></div>
+    <div class="hero-subtitle">The New Era</div>
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <div class="hero-divider-diamond"></div>
+      <div class="hero-divider-line" style="background: linear-gradient(270deg, var(--gold-dim), transparent);"></div>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">Crown (Dlocz) &nbsp;·&nbsp; Chief of Staff</div>
+      <div class="classified-badge">Council Eyes Only</div>
+    </div>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <nav class="nav">
+    <button class="nav-btn active" onclick="show('situation', this)">Situation</button>
+    <button class="nav-btn" onclick="show('mission', this)">Mission</button>
+    <button class="nav-btn" onclick="show('pillars', this)">Pillars</button>
+    <button class="nav-btn" onclick="show('changes', this)">Changes</button>
+    <button class="nav-btn" onclick="show('tasks', this)">Tasks</button>
+    <button class="nav-btn" onclick="show('timeline', this)">Timeline</button>
+    <button class="nav-btn" onclick="show('closing', this)">Closing</button>
+    <button class="nav-btn culmination-btn" onclick="show('culmination', this)">⚑ Culmination</button>
+  </nav>
+</div>
+
+<div class="main">
+
+  <!-- SITUATION -->
+  <div id="situation" class="section active">
+    <div class="sec-eyebrow"><div class="sec-num">I</div><div class="sec-line"></div></div>
+    <div class="sec-title">The <span>Honest</span> Situation</div>
+
+    <p>CT has been in a holding pattern for about a month. That's on me. I've been developing the vision for what comes next without transferring it to the people who need to execute it. This document ends that.</p>
+
+    <p>NBTF's decision to officially address cross-teaming was a direct hit to CT's core identity. The problem we were built to solve is now being handled by the game itself. Our enforcement era — Phase I and Phase II of CT's existence — is over.</p>
+
+    <div class="callout">
+      <div class="callout-title">Note</div>
+      <p>That is not a failure. That is a completion. CT operated so visibly and so persistently that the game itself was forced to act. Most factions dissolve because they fail. We are still here because we <strong>won.</strong></p>
+    </div>
+
+    <p>But winning the original mission while standing still is how factions die slowly. The faction ecosystem in NBTF is collapsing. Unofficial groups are absorbing players because they demand nothing — no structure, no accountability, no real community. Official factions are dying one by one. <strong>HF is the only one still standing with real presence. We are the other one — barely.</strong></p>
+
+    <p>New players enter NBTF every day with no guidance. No one walks them through the map. No one explains the mechanics. No one gives them a real community before the chaos does. That is the gap CT is uniquely positioned to fill — and we already built the systems to do it.</p>
+
+    <p>CTBC, CTWC, and CTWG have existed in various stages of development for months. We built them thinking they were supplementary to enforcement. They were actually the foundation of what comes next. <strong>Phase III activates what we already built.</strong></p>
+  </div>
+
+  <!-- MISSION -->
+  <div id="mission" class="section">
+    <div class="sec-eyebrow"><div class="sec-num">II</div><div class="sec-line"></div></div>
+    <div class="sec-title">The New <span>Mission</span></div>
+
+    <p>The old mission was one sentence: eradicate cross-teaming in NBTF. Clear, urgent, and actionable. The new mission needs the same clarity.</p>
+
+    <div class="mission-block">
+      <div class="mission-label">CT Mission Statement — Phase III</div>
+      <div class="mission-text">CT exists to <span>welcome every new player</span> into NBTF, give them the tools to thrive, and show them what a <span>real faction</span> looks like.</div>
+    </div>
+
+    <p>This is not a downgrade. While everything else in NBTF's faction ecosystem breaks down, CT becomes the standard — the last official faction with real structure, real progression, and real culture.</p>
+
+    <p>We are not fixing something as immediately visible as cross-teaming. We are fixing something slower and more fundamental: <strong>new players have nowhere real to land when they enter this game.</strong> CT becomes that place.</p>
+
+    <div class="callout">
+      <div class="callout-title">Legacy Advantage</div>
+      <p>No new faction can walk into NBTF with 250+ members, server-wide name recognition, and the infrastructure we have. That advantage only exists if we exploit it deliberately and immediately. New factions wish they were starting where we are. <strong>Use it.</strong></p>
+    </div>
+
+    <p>Think of Phase III as a new faction that happens to carry a legacy. Same name, same people, same history — but a fundamentally different identity, mission, and operational structure. Approach this with the energy of a <strong>launch</strong>, not a renovation.</p>
+  </div>
+
+  <!-- PILLARS -->
+  <div id="pillars" class="section">
+    <div class="sec-eyebrow"><div class="sec-num">III</div><div class="sec-line"></div></div>
+    <div class="sec-title">The Three <span>Pillars</span></div>
+
+    <p>Everything CT does from this point forward runs through three systems. They are not separate programs. They are one connected pipeline — each one feeding into the next.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">Pillar 01</div>
+        <div class="pillar-name">CTWG</div>
+        <div class="pillar-tag">The Street Team</div>
+        <p>On-call casual presence on NBTF servers. Members squad up, play together, help new players they encounter, and keep CT visible and approachable. No patrol structure. No enforcement. Presence first — branding and recruitment follow naturally.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">Pillar 02</div>
+        <div class="pillar-name">CTWC</div>
+        <div class="pillar-tag">The Front Door</div>
+        <p>Internal onboarding for every new CT member before anything else. Tour Guides walk them through NBTF — map, mechanics, weapons, vehicles, and core systems. Warm, personal, low-pressure. Closes with a direct handoff to CTBC.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">Pillar 03</div>
+        <div class="pillar-name">CTBC</div>
+        <div class="pillar-tag">The Core</div>
+        <p>Bootcamp is now CT's primary activity and main identity. Three modules, structured progression, graduation ceremony. This is where members are made. Where Raven and Enforcer come from. Where CT's culture gets transmitted.</p>
+      </div>
+    </div>
+
+    <div class="sec-eyebrow" style="margin-top: 52px;"><div class="sec-num">Pipeline</div><div class="sec-line"></div></div>
+
+    <div class="funnel">
+      <div class="funnel-step">
+        <div class="funnel-num">01</div>
+        <div class="funnel-name">CTWG</div>
+        <div class="funnel-desc">WatchGuard squads up with a new player on the server — helps them out, talks CT, brings them in</div>
+        <div class="funnel-arrow">↓</div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">02</div>
+        <div class="funnel-name">Join CT</div>
+        <div class="funnel-desc">Player officially joins the faction</div>
+        <div class="funnel-arrow">↓</div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">03</div>
+        <div class="funnel-name">CTWC</div>
+        <div class="funnel-desc">Tour Guide orients them — map knowledge, game mechanics, weapons, vehicles, CT culture</div>
+        <div class="funnel-arrow">↓</div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">04</div>
+        <div class="funnel-name">CTBC</div>
+        <div class="funnel-desc">Three-module bootcamp with graded progression and graduation ceremony</div>
+        <div class="funnel-arrow">↓</div>
+      </div>
+      <div class="funnel-step">
+        <div class="funnel-num">05</div>
+        <div class="funnel-name">Graduate</div>
+        <div class="funnel-desc">Placed into Raven or Enforcer — pipeline repeats with the next generation of members</div>
+        <div class="funnel-arrow">∞</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 24px;">This pipeline is self-renewing. It does not depend on NBTF having a cross-teaming problem, server politics, or faction wars. It depends on one thing — <strong>new players entering NBTF.</strong> And that is not stopping.</p>
+  </div>
+
+  <!-- CHANGES -->
+  <div id="changes" class="section">
+    <div class="sec-eyebrow"><div class="sec-num">IV</div><div class="sec-line"></div></div>
+    <div class="sec-title">What <span>Changes</span></div>
+
+    <p>Phase III is a significant structural shift. The council needs to understand the full scope of what needs to be looked at, adjusted, or retired. Nothing on this list is optional.</p>
+
+    <div class="changes-grid">
+      <div class="change-card staying">
+        <div class="change-card-label">Stays — Non-Negotiable</div>
+        <div class="change-item">Company structure — Raven and Enforcer remain, filled through CTBC</div>
+        <div class="change-item">Full rank systems for both companies</div>
+        <div class="change-item">Pacesetter hierarchy — LPCS, DPCS, FPCS, PCS unchanged</div>
+        <div class="change-item">Executive structure — CEO, COO, CHRO, CoS</div>
+        <div class="change-item">Strike system and discipline protocols</div>
+        <div class="change-item">Retirement policy and benefits</div>
+        <div class="change-item">Alliance system (pending review)</div>
+        <div class="change-item">CT brand, name, legacy, and history</div>
+        <div class="change-item">Chairman succession plan</div>
+        <div class="change-item">Voting and decision-making structure</div>
+        <div class="change-item">CTC economy and reward system</div>
+      </div>
+
+      <div class="change-card retiring">
+        <div class="change-card-label">Retiring — Archive These</div>
+        <div class="change-item">Hunt Operations — no longer primary activity</div>
+        <div class="change-item">Stakeout Operations</div>
+        <div class="change-item">Stop and Search</div>
+        <div class="change-item">Core Stakeout</div>
+        <div class="change-item">Rules of Engagement doc — enforcement-era framing</div>
+        <div class="change-item">MoW — suspend → formally retire or redefine</div>
+        <div class="change-item">MoD — review: redefine or retire</div>
+        <div class="change-item">Potential Crossteamers report system</div>
+        <div class="change-item">Confirmed Crossteamers list and threat levels</div>
+        <div class="change-item">Crossteaming Alert system</div>
+      </div>
+
+      <div class="change-card adjusting">
+        <div class="change-card-label">Adjusting — Needs Rewrite</div>
+        <div class="change-item">CTWG doc — full revamp to ambassador model</div>
+        <div class="change-item">CTWC doc — repositioned as internal onboarding</div>
+        <div class="change-item">CTBC handbook — language updated to Phase III</div>
+        <div class="change-item">All executive role descriptions</div>
+        <div class="change-item">CT bylaws — mission and purpose clause</div>
+        <div class="change-item">Faction-wide recruitment messaging</div>
+        <div class="change-item">Alliance review — do current allies fit Phase III?</div>
+        <div class="change-item">Staff quota system — shift toward CTBC/CTWC activity</div>
+        <div class="change-item">Public CT description used in NBTF</div>
+      </div>
+
+      <div class="change-card building">
+        <div class="change-card-label">Building — Needs To Be Created</div>
+        <div class="change-item">Official Phase III faction-wide announcement</div>
+        <div class="change-item">CTWG session logging format</div>
+        <div class="change-item">CTWC Tour Guide scheduling and on-call system</div>
+        <div class="change-item">CTBC activation plan — first cycle scheduled</div>
+        <div class="change-item">Updated server channels reflecting new priorities</div>
+        <div class="change-item">New public-facing CT recruitment narrative</div>
+        <div class="change-item">MoW/MoD replacement roles (if council decides)</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p>Everything on this list needs an owner from the council. This is why this briefing exists — so the work gets distributed properly from the start. Nothing here gets carried by one person.</p>
+    </div>
+  </div>
+
+  <!-- TASKS -->
+  <div id="tasks" class="section">
+    <div class="sec-eyebrow"><div class="sec-num">V</div><div class="sec-line"></div></div>
+    <div class="sec-title">Task <span>Assignments</span></div>
+
+    <p>Starting assignments based on role responsibility. Ownership means accountability for seeing it through — not doing every piece of it yourself. Delegate, coordinate, and report progress to the council.</p>
+
+    <div class="task-person">
+      <div class="task-header">
+        <div class="task-rank">CEO</div>
+        <div>
+          <div class="task-name">Potato</div>
+          <div class="task-role">Chairman / Chief Executive Officer</div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Deliver official Phase III announcement to the faction</div>
+          <div class="task-detail">This comes from the CEO. Not CoS, not COO. Confident, forward-looking, and clear about what changes and what doesn't.</div>
+        </div>
+        <div class="priority p-high">High</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Update CT bylaws — mission statement and purpose clause</div>
+          <div class="task-detail">Phase I mission statement is outdated. CEO leads the amendment with council input and approves the final version.</div>
+        </div>
+        <div class="priority p-high">High</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Call a full council vote on MoW and MoD</div>
+          <div class="task-detail">Formally retire, redefine for Phase III, or hold suspended. Council needs a decision on record.</div>
+        </div>
+        <div class="priority p-med">Med</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Review alliance relationships under new identity</div>
+          <div class="task-detail">TCC and ORCA were selected for PvP collaboration. Assess whether those relationships still serve CT's Phase III direction.</div>
+        </div>
+        <div class="priority p-low">Low</div>
+      </div>
+    </div>
+
+    <div class="task-person">
+      <div class="task-header">
+        <div class="task-rank">COO</div>
+        <div>
+          <div class="task-name">Systems</div>
+          <div class="task-role">Vice-Chairman / Chief Operating Officer</div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Brief the Pacesetter team on Phase III and CTBC activation</div>
+          <div class="task-detail">Pacesetters need to understand CTBC is now the primary activity. Coordinate the briefing and ensure LPCS is aligned before rollout begins.</div>
+        </div>
+        <div class="priority p-high">High</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Coordinate CTWG relaunch</div>
+          <div class="task-detail">WatchGuards shift from patrol units to casual ambassador squads. Ensure Watch Commanders understand the new format and CTC payout is operational.</div>
+        </div>
+        <div class="priority p-high">High</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Update server channels to reflect new program priorities</div>
+          <div class="task-detail">Channel structure, pinned messages, and descriptions should reflect CTBC/CTWC/CTWG as CT's primary systems.</div>
+        </div>
+        <div class="priority p-med">Med</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Archive enforcement ops and docs cleanly</div>
+          <div class="task-detail">Hunt, Stakeout, Stop and Search, Core Stakeout, crossteamer systems — archive, don't delete. History stays, active status goes.</div>
+        </div>
+        <div class="priority p-med">Med</div>
+      </div>
+    </div>
+
+    <div class="task-person">
+      <div class="task-header">
+        <div class="task-rank">HR</div>
+        <div>
+          <div class="task-name">Yep</div>
+          <div class="task-role">Senior Executive / Chief Human Resources Officer</div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Update all role descriptions to reflect Phase III identity</div>
+          <div class="task-detail">Any role description referencing enforcement, crossteamer hunting, or patrol ops needs updated language aligned with the onboarding mission.</div>
+        </div>
+        <div class="priority p-high">High</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Align new member intake process with CTWC pipeline</div>
+          <div class="task-detail">When someone joins CT, first touchpoint is CTWC — not a random channel or immediate company assignment. HR ensures intake routes correctly.</div>
+        </div>
+        <div class="priority p-high">High</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Update staff quota system toward CTBC and CTWC activity</div>
+          <div class="task-detail">Current quotas reference hunt ops and enforcement events. Quotas should count CTBC modules, CTWC tours, and CTWG sessions as primary qualifying activity.</div>
+        </div>
+        <div class="priority p-med">Med</div>
+      </div>
+    </div>
+
+    <div class="task-person">
+      <div class="task-header">
+        <div class="task-rank">PCS</div>
+        <div>
+          <div class="task-name">Woush (LPCS)</div>
+          <div class="task-role">Lead Pacesetter</div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Schedule and launch first CTBC cycle</div>
+          <div class="task-detail">CTBC is now CT's primary activity. Set the schedule, assign Pacesetters to modules, and ensure every active cadet has a clear path through the pipeline.</div>
+        </div>
+        <div class="priority p-high">High</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Identify and activate Tour Guides for CTWC</div>
+          <div class="task-detail">CTWC needs certified Tour Guides before new members flow through the pipeline. Identify candidates, get first round supervised and certified.</div>
+        </div>
+        <div class="priority p-high">High</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content">
+          <div class="task-title">Submit weekly progress reports on pipeline activity</div>
+          <div class="task-detail">During transition: weekly updates to council on cadets in CTBC, CTWC tours run, CTWG sessions logged. This is how leadership tracks whether the pivot is working.</div>
+        </div>
+        <div class="priority p-med">Med</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div id="timeline" class="section">
+    <div class="sec-eyebrow"><div class="sec-num">VI</div><div class="sec-line"></div></div>
+    <div class="sec-title">The <span>8-Week</span> Runway</div>
+
+    <p>Phase III is not open-ended. CT operates on a defined runway. At the end of 8 weeks the council evaluates honestly — is the pipeline working, is activity recovering, are members engaged. If yes, CT found its new identity. If no, CT closes deliberately and with dignity.</p>
+
+    <p><strong>Either outcome is handled with intention. CT does not fade. We choose how this ends.</strong></p>
+
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-week">Week 1–2 — Foundation</div>
+        <div class="t-title">Council Alignment & System Activation</div>
+        <div class="t-desc">Council reads and aligns on this briefing. CEO delivers faction-wide announcement. COO briefs the Pacesetter team. HR begins role description updates. CTWG relaunch communicated to Watch Commanders. CTWC Tour Guide pipeline activated. Server channels updated.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-week">Week 3–4 — First Cycle</div>
+        <div class="t-title">CTBC Cycle One Launches</div>
+        <div class="t-desc">First official CTBC cycle begins. New members routed through CTWC before entering bootcamp. CTWG sessions running regularly. Pacesetters operating under updated quotas. Bylaws amendment submitted for council vote.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-week">Week 5–6 — Evaluation</div>
+        <div class="t-title">Mid-Point Check</div>
+        <div class="t-desc">LPCS submits mid-cycle progress report. Council reviews pipeline flow, activity levels, member engagement, and recruitment numbers. Adjustments made based on real data — not assumptions. No major structural changes at this stage.</div>
+      </div>
+      <div class="t-item">
+        <div class="t-week">Week 7–8 — Decision</div>
+        <div class="t-title">First Graduation & Final Assessment</div>
+        <div class="t-desc">First CTBC graduation ceremony. Council holds full assessment — is the identity working? Is the pipeline self-sustaining? Decision on CT's future made on real data. If the pivot succeeds, CT continues. If not, Operation Culmination is called to a vote.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div id="closing" class="section">
+    <div class="sec-eyebrow"><div class="sec-num">VII</div><div class="sec-line"></div></div>
+    <div class="sec-title">From <span>CoS</span> to Council</div>
+
+    <p>I want to be direct about something before I close this out.</p>
+
+    <p>I am CoS. I am not CEO. I am not Chairman. The ideas in this document are mine — developed over the past month because someone had to think about where CT goes from here. But developing the idea and executing the idea are two very different things, and <strong>execution is not my job alone.</strong></p>
+
+    <p>Potato — this is your faction to lead. Systems — this is your operation to run. The council as a whole owns this transition. I can support, guide, and consult — but I cannot and should not be carrying this across the finish line. That dynamic is part of what stalled us to begin with.</p>
+
+    <div class="callout">
+      <div class="callout-title">Important</div>
+      <p>Everything in this briefing is a proposal, not a decree. These are the ideas I believe give CT the best shot at a successful pivot — but I don't have all the answers and I'm not in the room the way you are. If something doesn't work, adjust it. If you see a better approach, take it. What matters is that the council is aligned on the mission and moving together.</p>
+    </div>
+
+    <p>This is a hands-on project that requires insight, contribution, and ownership from everyone on this council. I'm asking you to treat it that way.</p>
+
+    <p>CT survived leadership changes, inactivity cycles, and a war. It'll survive this too — because we're choosing to evolve instead of waiting to collapse. The pipeline is built. The systems exist. The brand still carries weight. <strong>Everything we need to succeed in Phase III we already have. The only thing missing is the council deciding to move.</strong></p>
+
+    <div class="closing-box">
+      <div class="closing-big">Presence first.<br><span>People second.</span><br>Everything else follows.</div>
+      <p style="font-family: 'Rajdhani', sans-serif; font-size: 13px; color: var(--text-muted); letter-spacing: 1px; margin-top: 0;">CT Phase III — The New Era</p>
+      <div class="closing-sig">— Crown (Dlocz) &nbsp;·&nbsp; Chief of Staff &nbsp;·&nbsp; Phase III Briefing</div>
+    </div>
+  </div>
+
+  <!-- OPERATION CULMINATION -->
+  <div id="culmination" class="section">
+
+    <div class="culmination-hero">
+      <div class="culm-eyebrow">Council Vote — Classified Option</div>
+      <div class="culm-title">OPERATION</div>
+      <div class="culm-sub">Culmination</div>
+      <div class="culm-divider">
+        <div class="culm-divider-line"></div>
+        <div class="culm-divider-text">If the pivot fails — this is how CT ends</div>
+        <div class="culm-divider-line"></div>
+      </div>
+    </div>
+
+    <div class="culm-body">
+      <p>This section exists because the council deserves to know the full picture. Phase III is CT's best shot at a new era. But if the 8-week runway ends and the pivot has not taken hold — activity has not recovered, the pipeline is not functioning, and leadership is still waiting on one person to keep things moving — then the council has a choice to make.</p>
+
+      <p>Operation Culmination is that choice. <strong>It is not a failure. It is not a retreat. It is CT deciding, on its own terms, that the mission is complete.</strong></p>
+
+      <div class="culm-callout">
+        <p>CT was built to eradicate cross-teaming in NBTF. We did it so effectively that the game adopted our mission as official policy. The war is over. We won. Operation Culmination is how we declare that — loudly, proudly, and on our own terms — before the faction fades into silence.</p>
+      </div>
+
+      <p>Most factions die quietly. Members drift away, leadership goes inactive, and eventually the server just sits empty. That is not how CT ends. If CT ends, it ends the way it lived — with presence, with intention, and with the entire server watching.</p>
+
+      <div class="what-happens">
+        <div class="what-title">What Operation Culmination Looks Like</div>
+
+        <div class="event-phase">
+          <div class="event-num">I</div>
+          <div class="event-content">
+            <div class="event-title">The Declaration</div>
+            <div class="event-desc">CEO Potato makes the official announcement to the faction and to NBTF at large. CT formally declares the war against cross-teaming won. The announcement credits every member, every founder, every era of CT's history. This is published everywhere — Discord, NBTF, any public CT presence.</div>
+          </div>
+        </div>
+
+        <div class="event-phase">
+          <div class="event-num">II</div>
+          <div class="event-content">
+            <div class="event-title">The Archive</div>
+            <div class="event-desc">Every CT document, system, guide, and piece of history is formally archived and preserved. CTBC, CTWC, CTWG, the bylaws, the org chart, the event logs — all of it documented and stored. CT's legacy does not disappear. It becomes a record of what a faction built right looks like.</div>
+          </div>
+        </div>
+
+        <div class="event-phase">
+          <div class="event-num">III</div>
+          <div class="event-content">
+            <div class="event-title">The Final Event</div>
+            <div class="event-desc">CT hosts one final server-wide event in NBTF — open to everyone, not just CT members. A celebration of everything the faction stood for. Founders recognized. Veteran members honored. The whole server invited to play alongside CT one last time. No enforcement, no ops. Just CT being CT — together, one final time.</div>
+          </div>
+        </div>
+
+        <div class="event-phase">
+          <div class="event-num">IV</div>
+          <div class="event-content">
+            <div class="event-title">The Ceremony</div>
+            <div class="event-desc">Following the final event, a formal in-Discord closing ceremony. Founder acknowledgments. A reading of CT's history and achievements. Every member who contributed recognized by name. The faction officially disbanded with full ceremony — not deleted, not abandoned. Closed.</div>
+          </div>
+        </div>
+
+        <div class="event-phase">
+          <div class="event-num">V</div>
+          <div class="event-content">
+            <div class="event-title">The Legacy</div>
+            <div class="event-desc">The CT Discord server remains open as a read-only archive. The history, the documents, the screenshots — all preserved. Anyone who was ever part of CT can return and see what was built. The server stays. The faction ends. The legacy doesn't.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vote-section">
+        <div class="vote-title">Council Vote</div>
+        <div class="vote-sub">To be called only if Phase III runway fails — Week 8</div>
+
+        <div class="vote-options">
+          <div class="vote-option pivot-opt" id="pivot-vote" onclick="castVote('pivot')">
+            <div class="vote-opt-label">Option A</div>
+            <div class="vote-opt-title">Continue</div>
+            <div class="vote-opt-desc">Extend the runway. Identify what's not working and adjust. CT continues under Phase III with revised approach.</div>
+            <div class="vote-indicator">✓</div>
+          </div>
+          <div class="vote-option culm-opt" id="culm-vote" onclick="castVote('culmination')">
+            <div class="vote-opt-label">Option B</div>
+            <div class="vote-opt-title">Culmination</div>
+            <div class="vote-opt-desc">Declare the mission complete. Execute Operation Culmination. CT closes with full ceremony on its own terms.</div>
+            <div class="vote-indicator">✓</div>
+          </div>
+        </div>
+
+        <div class="vote-tally">
+          <div class="tally-item">
+            <div class="tally-num tally-pivot" id="pivot-count">0</div>
+            <div class="tally-label">Continue</div>
+          </div>
+          <div class="tally-item">
+            <div class="tally-num tally-needed">4</div>
+            <div class="tally-label">Votes needed to pass</div>
+          </div>
+          <div class="tally-item">
+            <div class="tally-num tally-culm" id="culm-count">0</div>
+            <div class="tally-label">Culmination</div>
+          </div>
+        </div>
+        <div class="vote-note">Majority vote required (4+ of 7 council votes). Chairman holds tiebreaker authority per CT bylaws.<br>This vote is only called if the Week 8 assessment determines Phase III has not taken hold.</div>
+      </div>
+
+      <div class="culmination-close">
+        <div class="big">CT didn't fade.<br><span>CT didn't lose.</span><br>CT decided.</div>
+        <p>Whatever the council chooses — pivot or culmination — it is chosen with intention. That is the CT way.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  let votes = { pivot: 0, culmination: 0 };
+  let voted = false;
+
+  function castVote(choice) {
+    if (voted) {
+      document.getElementById('pivot-vote').classList.remove('selected');
+      document.getElementById('culm-vote').classList.remove('selected');
+      if (votes.pivot > 0 && choice !== 'pivot') votes.pivot--;
+      if (votes.culmination > 0 && choice !== 'culmination') votes.culmination--;
+    }
+    votes[choice]++;
+    voted = true;
+    document.getElementById('pivot-vote').classList.toggle('selected', choice === 'pivot');
+    document.getElementById('culm-vote').classList.toggle('selected', choice === 'culmination');
+    document.getElementById('pivot-count').textContent = votes.pivot;
+    document.getElementById('culm-count').textContent = votes.culmination;
+  }
+</script>
+</body>
+</html>
