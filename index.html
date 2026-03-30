@@ -3,1111 +3,284 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CT — Phase III Council Briefing</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>CT — The Inner War | Council Briefing</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Rajdhani:wght@300;400;500;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 :root {
-  --navy: #0d1520;
-  --navy-mid: #111e2e;
-  --navy-light: #162336;
-  --navy-border: #1e2f42;
-  --gold: #c9a84c;
-  --gold-light: #e2c470;
-  --gold-dim: #6b5520;
-  --gold-glow: rgba(201,168,76,0.12);
-  --gold-glow-strong: rgba(201,168,76,0.25);
-  --silver: #8a9bb0;
-  --silver-light: #b8c8d8;
-  --text: #d8e4f0;
-  --text-muted: #7a90a8;
-  --text-dim: #435566;
-  --red: #8b1a1a;
-  --red-bright: #c0392b;
-  --white: #f0f4f8;
-  --culmination: #4a0808;
-  --culmination-border: #8b1a1a;
-  --culmination-gold: #ff6b35;
-}
-
-body {
-  background: var(--navy);
-  color: var(--text);
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 400;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* Grain texture overlay */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 999;
-  opacity: 0.4;
-}
-
-/* Hero */
-.hero {
-  position: relative;
-  background: linear-gradient(180deg, #070e18 0%, var(--navy) 100%);
-  padding: 80px 32px 60px;
-  border-bottom: 1px solid var(--navy-border);
-  overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 70%),
-    repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(201,168,76,0.015) 80px, rgba(201,168,76,0.015) 81px);
-  pointer-events: none;
-}
-
-.hero-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.ct-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 32px;
-}
-
-.ct-emblem {
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--gold-dim);
-  background: var(--gold-glow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ct-emblem svg { width: 28px; height: 28px; }
-
-.ct-badge-text {
-  font-family: 'Cinzel', serif;
-  font-size: 11px;
-  letter-spacing: 4px;
-  color: var(--gold);
-  text-transform: uppercase;
-}
-
-.hero-eyebrow {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 11px;
-  letter-spacing: 5px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.hero-eyebrow::before {
-  content: '';
-  width: 32px;
-  height: 1px;
-  background: var(--gold-dim);
-}
-
-.hero-title {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(40px, 7vw, 80px);
-  font-weight: 700;
-  line-height: 1;
-  color: var(--white);
-  margin-bottom: 8px;
-  letter-spacing: 2px;
-}
-
-.hero-title span {
-  color: var(--gold);
-}
-
-.hero-subtitle {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(14px, 2.5vw, 22px);
-  font-weight: 400;
-  color: var(--silver);
-  letter-spacing: 6px;
-  margin-bottom: 40px;
-  text-transform: uppercase;
-}
-
-.hero-divider {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.hero-divider-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--gold-dim), transparent);
-}
-
-.hero-divider-diamond {
-  width: 6px;
-  height: 6px;
-  background: var(--gold);
-  transform: rotate(45deg);
-}
-
-.hero-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.hero-meta-item {
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: var(--text-muted);
-  text-transform: uppercase;
-}
-
-.classified-badge {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--gold);
-  border: 1px solid var(--gold-dim);
-  padding: 5px 14px;
-  background: var(--gold-glow);
-  text-transform: uppercase;
-}
-
-/* Navigation */
-.nav-wrap {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(7, 14, 24, 0.97);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--navy-border);
-}
-
-.nav {
-  max-width: 900px;
-  margin: 0 auto;
-  display: flex;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding: 0 32px;
-}
-
-.nav::-webkit-scrollbar { display: none; }
-
-.nav-btn {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  padding: 18px 22px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: color 0.2s, border-color 0.2s;
-}
-
-.nav-btn:hover { color: var(--silver); }
-.nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
-.nav-btn.culmination-btn { color: var(--culmination-border) !important; }
-.nav-btn.culmination-btn.active { color: #e05a3a !important; border-bottom-color: #e05a3a !important; }
-
-/* Main content */
-.main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 60px 32px 100px;
-}
-
-.section { display: none; animation: fadeUp 0.35s ease; }
-.section.active { display: block; }
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Section headers */
-.sec-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 16px;
-}
-
-.sec-num {
-  font-family: 'Cinzel', serif;
-  font-size: 11px;
-  color: var(--gold);
-  letter-spacing: 3px;
-}
-
-.sec-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--navy-border), transparent);
-}
-
-.sec-title {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(26px, 4vw, 44px);
-  font-weight: 700;
-  color: var(--white);
-  line-height: 1.1;
-  margin-bottom: 36px;
-  letter-spacing: 1px;
-}
-
-.sec-title span { color: var(--gold); }
-
-/* Body text */
-p {
-  font-family: 'Crimson Text', serif;
-  font-size: 17px;
-  line-height: 1.75;
-  color: #a8bcd0;
-  margin-bottom: 22px;
-}
-
-strong { color: var(--gold-light); font-weight: 600; }
-em { color: var(--silver-light); font-style: italic; }
-
-/* Callout blocks */
-.callout {
-  border-left: 3px solid var(--gold-dim);
-  background: var(--navy-light);
-  padding: 22px 28px;
-  margin: 36px 0;
-  position: relative;
-}
-
-.callout::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, var(--gold-dim), transparent);
-}
-
-.callout p { margin: 0; color: var(--silver-light); font-style: italic; font-size: 17px; }
-
-.callout-title {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-/* Mission block */
-.mission-block {
-  border: 1px solid var(--gold-dim);
-  background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
-  padding: 48px 40px;
-  margin: 40px 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.mission-block::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 50%, var(--gold-glow), transparent);
-  pointer-events: none;
-}
-
-.mission-block::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-}
-
-.mission-label {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10px;
-  letter-spacing: 5px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  margin-bottom: 24px;
-}
-
-.mission-text {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(18px, 3vw, 28px);
-  font-weight: 600;
-  line-height: 1.5;
-  color: var(--white);
-  position: relative;
-}
-
-.mission-text span { color: var(--gold); }
-
-/* Three pillars */
-.pillars {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  margin: 40px 0;
-}
-
-.pillar {
-  background: var(--navy-light);
-  padding: 32px 24px;
-  border-top: 2px solid var(--navy-border);
-  position: relative;
-  transition: border-color 0.25s;
-  overflow: hidden;
-}
-
-.pillar::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 1px;
-  background: var(--navy-border);
-}
-
-.pillar:hover { border-top-color: var(--gold); }
-
-.pillar-num {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-
-.pillar-name {
-  font-family: 'Cinzel', serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--gold);
-  margin-bottom: 6px;
-  letter-spacing: 1px;
-}
-
-.pillar-tag {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--silver);
-  text-transform: uppercase;
-  margin-bottom: 18px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--navy-border);
-}
-
-.pillar p {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 14px;
-  color: var(--text-muted);
-  margin: 0;
-  line-height: 1.65;
-}
-
-/* Pipeline funnel */
-.funnel { margin: 40px 0; }
-
-.funnel-step {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background: var(--navy-light);
-  border: 1px solid var(--navy-border);
-  border-left: 3px solid var(--navy-border);
-  padding: 18px 24px;
-  margin-bottom: 2px;
-  transition: border-left-color 0.2s;
-}
-
-.funnel-step:hover { border-left-color: var(--gold); }
-
-.funnel-num {
-  font-family: 'Cinzel', serif;
-  font-size: 11px;
-  color: var(--gold);
-  letter-spacing: 2px;
-  min-width: 28px;
-}
-
-.funnel-name {
-  font-family: 'Cinzel', serif;
-  font-size: 16px;
-  color: var(--white);
-  min-width: 110px;
-  font-weight: 600;
-}
-
-.funnel-desc {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 14px;
-  color: var(--text-muted);
-  flex: 1;
-  letter-spacing: 0.3px;
-}
-
-.funnel-arrow {
-  color: var(--gold-dim);
-  font-size: 16px;
-  flex-shrink: 0;
-}
-
-/* Changes grid */
-.changes-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  margin: 36px 0;
-}
-
-.change-card {
-  background: var(--navy-light);
-  padding: 28px;
-  border-top: 2px solid var(--navy-border);
-}
-
-.change-card-label {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--navy-border);
-}
-
-.staying .change-card-label { color: #4a9e6a; }
-.retiring .change-card-label { color: var(--red-bright); }
-.adjusting .change-card-label { color: var(--gold); }
-.building .change-card-label { color: #5b9bd5; }
-
-.change-item {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.55;
-  letter-spacing: 0.3px;
-}
-
-.change-item::before {
-  content: '—';
-  color: var(--text-dim);
-  flex-shrink: 0;
-}
-
-/* Tasks */
-.task-person { margin-bottom: 48px; }
-
-.task-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding-bottom: 20px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid var(--navy-border);
-}
-
-.task-rank {
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--gold-dim);
-  background: var(--gold-glow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  color: var(--gold);
-  flex-shrink: 0;
-  font-weight: 700;
-}
-
-.task-name {
-  font-family: 'Cinzel', serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: 1px;
-}
-
-.task-role {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10px;
-  letter-spacing: 2.5px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  margin-top: 2px;
-}
-
-.task-item {
-  display: flex;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--navy-border);
-  align-items: flex-start;
-}
-
-.task-item:last-child { border-bottom: none; }
-
-.task-check {
-  width: 20px;
-  height: 20px;
-  border: 1px solid var(--navy-border);
-  background: var(--navy);
-  flex-shrink: 0;
-  margin-top: 2px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s;
-}
-
-.task-check:hover { border-color: var(--gold-dim); }
-
-.task-check.done {
-  background: rgba(74, 158, 106, 0.15);
-  border-color: #4a9e6a;
-}
-
-.task-check.done::after {
-  content: '✓';
-  font-size: 12px;
-  color: #4a9e6a;
-}
-
-.task-content { flex: 1; }
-
-.task-title {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text);
-  letter-spacing: 0.5px;
-  margin-bottom: 5px;
-}
-
-.task-detail {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.6;
-  letter-spacing: 0.3px;
-}
-
-.priority {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  flex-shrink: 0;
-  margin-top: 2px;
-  font-weight: 600;
-}
-
-.p-high { color: var(--red-bright); border: 1px solid var(--red); background: rgba(139,26,26,0.15); }
-.p-med { color: var(--gold); border: 1px solid var(--gold-dim); background: var(--gold-glow); }
-.p-low { color: var(--text-dim); border: 1px solid var(--navy-border); }
-
-/* Timeline */
-.timeline {
-  margin: 40px 0;
-  padding-left: 36px;
-  position: relative;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 8px;
-  top: 12px;
-  bottom: 12px;
-  width: 1px;
-  background: linear-gradient(180deg, var(--gold-dim), var(--navy-border));
-}
-
-.t-item {
-  position: relative;
-  margin-bottom: 40px;
-}
-
-.t-item::before {
-  content: '';
-  position: absolute;
-  left: -32px;
-  top: 10px;
-  width: 10px;
-  height: 10px;
-  background: var(--gold);
-  border: 2px solid var(--navy);
-  border-radius: 50%;
-}
-
-.t-week {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.t-title {
-  font-family: 'Cinzel', serif;
-  font-size: 18px;
-  color: var(--white);
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-.t-desc {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.7;
-  letter-spacing: 0.3px;
-}
-
-/* Closing */
-.closing-crest {
-  text-align: center;
-  margin: 48px 0 32px;
-}
-
-.closing-box {
-  border: 1px solid var(--navy-border);
-  background: var(--navy-light);
-  padding: 56px 40px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.closing-box::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
-}
-
-.closing-big {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(20px, 4vw, 36px);
-  font-weight: 700;
-  line-height: 1.4;
-  color: var(--white);
-  margin-bottom: 24px;
-  letter-spacing: 2px;
-}
-
-.closing-big span { color: var(--gold); }
-
-.closing-sig {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  margin-top: 40px;
-  padding-top: 28px;
-  border-top: 1px solid var(--navy-border);
-}
-
-/* ===== OPERATION CULMINATION ===== */
-.culmination-hero {
-  background: linear-gradient(135deg, #0a0404, #150808, #0a0404);
-  border: 1px solid var(--culmination-border);
-  padding: 56px 40px;
-  margin: 0 0 48px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.culmination-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(192,57,43,0.08), transparent);
-}
-
-.culmination-hero::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--culmination-border), transparent);
-}
-
-.culm-eyebrow {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10px;
-  letter-spacing: 5px;
-  color: var(--culmination-border);
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-
-.culm-title {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(28px, 5vw, 56px);
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: 3px;
-  line-height: 1;
-  margin-bottom: 12px;
-}
-
-.culm-sub {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(14px, 2.5vw, 20px);
-  color: var(--culmination-border);
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  margin-bottom: 32px;
-}
-
-.culm-divider {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  justify-content: center;
-}
-
-.culm-divider-line {
-  width: 60px;
-  height: 1px;
-  background: var(--culmination-border);
-}
-
-.culm-divider-text {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--culmination-border);
-  text-transform: uppercase;
-}
-
-.culm-body p {
-  font-family: 'Crimson Text', serif;
-  font-size: 17px;
-  line-height: 1.75;
-  color: #a08080;
-  margin-bottom: 22px;
-}
-
-.culm-body strong { color: #d4a0a0; }
-
-.culm-callout {
-  border-left: 3px solid var(--culmination-border);
-  background: rgba(20, 4, 4, 0.6);
-  padding: 22px 28px;
-  margin: 36px 0;
-  position: relative;
-}
-
-.culm-callout p { color: #c08080; margin: 0; font-style: italic; }
-
-.what-happens {
-  margin: 40px 0;
-}
-
-.what-title {
-  font-family: 'Cinzel', serif;
-  font-size: 18px;
-  color: var(--white);
-  margin-bottom: 24px;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
-
-.event-phase {
-  display: flex;
-  gap: 20px;
-  background: rgba(20, 4, 4, 0.5);
-  border: 1px solid var(--culmination-border);
-  border-left: 3px solid var(--culmination-border);
-  padding: 20px 24px;
-  margin-bottom: 2px;
-}
-
-.event-num {
-  font-family: 'Cinzel', serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--culmination-border);
-  min-width: 36px;
-  line-height: 1;
-  margin-top: 2px;
-}
-
-.event-content { flex: 1; }
-
-.event-title {
-  font-family: 'Cinzel', serif;
-  font-size: 15px;
-  color: var(--white);
-  font-weight: 600;
-  margin-bottom: 6px;
-  letter-spacing: 0.5px;
-}
-
-.event-desc {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 14px;
-  color: #8a6060;
-  line-height: 1.65;
-  letter-spacing: 0.3px;
-}
-
-/* Vote section */
-.vote-section {
-  border: 1px solid var(--culmination-border);
-  background: rgba(10, 4, 4, 0.8);
-  padding: 40px;
-  margin: 48px 0;
-  position: relative;
-}
-
-.vote-section::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--culmination-border), transparent);
-}
-
-.vote-title {
-  font-family: 'Cinzel', serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--white);
-  text-align: center;
-  margin-bottom: 8px;
-  letter-spacing: 2px;
-}
-
-.vote-sub {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--culmination-border);
-  text-align: center;
-  text-transform: uppercase;
-  margin-bottom: 36px;
-}
-
-.vote-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.vote-option {
-  border: 1px solid;
-  padding: 28px 24px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-  overflow: hidden;
-}
-
-.vote-option.pivot-opt {
-  border-color: var(--gold-dim);
-  background: rgba(201, 168, 76, 0.04);
-}
-
-.vote-option.culm-opt {
-  border-color: var(--culmination-border);
-  background: rgba(139, 26, 26, 0.04);
-}
-
-.vote-option.pivot-opt:hover, .vote-option.pivot-opt.selected {
-  background: rgba(201, 168, 76, 0.1);
-  border-color: var(--gold);
-}
-
-.vote-option.culm-opt:hover, .vote-option.culm-opt.selected {
-  background: rgba(139, 26, 26, 0.15);
-  border-color: var(--red-bright);
-}
-
-.vote-opt-label {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-.pivot-opt .vote-opt-label { color: var(--gold-dim); }
-.culm-opt .vote-opt-label { color: var(--culmination-border); }
-
-.vote-opt-title {
-  font-family: 'Cinzel', serif;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.pivot-opt .vote-opt-title { color: var(--gold-light); }
-.culm-opt .vote-opt-title { color: #d4a0a0; }
-
-.vote-opt-desc {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 13px;
-  line-height: 1.6;
-  letter-spacing: 0.3px;
-}
-
-.pivot-opt .vote-opt-desc { color: var(--text-muted); }
-.culm-opt .vote-opt-desc { color: #8a6060; }
-
-.vote-indicator {
-  width: 20px;
-  height: 20px;
-  border: 1px solid;
-  border-radius: 50%;
-  margin: 16px auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  transition: all 0.2s;
-}
-
-.pivot-opt .vote-indicator { border-color: var(--gold-dim); color: transparent; }
-.culm-opt .vote-indicator { border-color: var(--culmination-border); color: transparent; }
-.pivot-opt.selected .vote-indicator { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.1); }
-.culm-opt.selected .vote-indicator { border-color: var(--red-bright); color: var(--red-bright); background: rgba(139,26,26,0.1); }
-
-.vote-tally {
-  background: rgba(10, 4, 4, 0.6);
-  border: 1px solid var(--navy-border);
-  padding: 20px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.tally-item {
-  text-align: center;
-}
-
-.tally-num {
-  font-family: 'Cinzel', serif;
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: 6px;
-}
-
-.tally-label {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-.tally-pivot { color: var(--gold); }
-.tally-culm { color: var(--culmination-border); }
-.tally-needed { color: var(--text-muted); }
-
-.vote-note {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  color: var(--text-dim);
-  text-align: center;
-  margin-top: 16px;
-  line-height: 1.6;
-}
-
-.culmination-close {
-  border: 1px solid var(--culmination-border);
-  background: linear-gradient(135deg, #0a0404, #100606);
-  padding: 48px 40px;
-  text-align: center;
-  position: relative;
-  margin-top: 48px;
-}
-
-.culmination-close::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--culmination-border), transparent);
-}
-
-.culmination-close .big {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(20px, 3.5vw, 34px);
-  font-weight: 700;
-  color: var(--white);
-  line-height: 1.4;
-  margin-bottom: 20px;
-  letter-spacing: 2px;
-}
-
-.culmination-close .big span { color: var(--culmination-border); }
-
-.culmination-close p {
-  font-family: 'Crimson Text', serif;
-  font-size: 16px;
-  color: #8a6060;
-  font-style: italic;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-@media (max-width: 620px) {
-  .pillars { grid-template-columns: 1fr; }
-  .changes-grid { grid-template-columns: 1fr; }
-  .vote-options { grid-template-columns: 1fr; }
-  .main { padding: 40px 20px 80px; }
-  .nav { padding: 0 16px; }
-  .hero { padding: 60px 20px 48px; }
-  .mission-block, .closing-box, .culmination-hero { padding: 40px 24px; }
-  .vote-section { padding: 28px 20px; }
+  --navy:#0d1520;--navy-mid:#111e2e;--navy-light:#162336;--navy-border:#1e2f42;
+  --gold:#c9a84c;--gold-light:#e2c470;--gold-dim:#6b5520;--gold-glow:rgba(201,168,76,0.12);
+  --silver:#8a9bb0;--silver-light:#b8c8d8;--text:#d8e4f0;--text-muted:#7a90a8;--text-dim:#435566;
+  --red:#8b1a1a;--red-bright:#c0392b;--white:#f0f4f8;
+  --culm:#4a0808;--culm-border:#8b1a1a;
+  --raven:#4a6fa5;--raven-dim:#1e3a5f;--raven-glow:rgba(74,111,165,0.12);
+  --enforcer:#8b4a2a;--enforcer-dim:#5a2810;--enforcer-glow:rgba(139,74,42,0.12);
+}
+*{box-sizing:border-box;}
+body{background:var(--navy);color:var(--text);font-family:'Rajdhani',sans-serif;font-weight:400;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.4;}
+
+.faction-name-block{display:inline-block;position:relative;margin-bottom:4px;}
+.faction-name-old{font-family:'Cinzel',serif;font-size:clamp(11px,1.6vw,15px);color:var(--text-dim);letter-spacing:4px;position:relative;display:inline-block;}
+.faction-name-old::after{content:'';position:absolute;left:-4px;right:-4px;top:50%;height:2px;background:var(--red-bright);transform:translateY(-50%);}
+.faction-name-new{display:block;font-family:'Permanent Marker',cursive;font-size:clamp(14px,2vw,19px);color:var(--gold-light);letter-spacing:2px;margin-top:6px;transform:rotate(-1.5deg);opacity:.9;}
+
+.hero{position:relative;background:linear-gradient(180deg,#050c14 0%,var(--navy) 100%);padding:80px 32px 64px;border-bottom:1px solid var(--navy-border);overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(201,168,76,.07) 0%,transparent 70%),repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(201,168,76,.012) 80px,rgba(201,168,76,.012) 81px);pointer-events:none;}
+.hero-inner{max-width:920px;margin:0 auto;position:relative;}
+.ct-badge{display:inline-flex;align-items:center;gap:12px;margin-bottom:36px;}
+.ct-emblem{width:48px;height:48px;border:1px solid var(--gold-dim);background:var(--gold-glow);display:flex;align-items:center;justify-content:center;}
+.ct-emblem svg{width:28px;height:28px;}
+.hero-eyebrow{font-size:11px;letter-spacing:5px;color:var(--text-dim);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:16px;}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold-dim);}
+.hero-kicker{font-family:'Cinzel',serif;font-size:clamp(11px,1.8vw,14px);letter-spacing:8px;color:var(--gold-dim);text-transform:uppercase;margin-bottom:12px;}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(44px,8vw,92px);font-weight:700;line-height:.95;color:var(--white);letter-spacing:2px;margin-bottom:16px;}
+.hero-title span{color:var(--gold);}
+.hero-subtitle{font-family:'Cinzel',serif;font-size:clamp(13px,2vw,20px);font-weight:400;color:var(--silver);letter-spacing:5px;text-transform:uppercase;margin-bottom:32px;}
+.vs-divider{display:flex;align-items:center;gap:20px;margin-bottom:40px;}
+.vs-side{display:flex;align-items:center;gap:12px;flex:1;}
+.vs-company{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;font-weight:700;}
+.vs-raven{color:var(--raven);}.vs-enforcer{color:var(--enforcer);}
+.vs-line-r{flex:1;height:1px;background:linear-gradient(90deg,var(--raven-dim),transparent);}
+.vs-line-e{flex:1;height:1px;background:linear-gradient(270deg,var(--enforcer-dim),transparent);}
+.vs-badge{font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:var(--gold);border:1px solid var(--gold-dim);width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:var(--gold-glow);flex-shrink:0;}
+.hero-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.hero-meta-item{font-size:11px;letter-spacing:2px;color:var(--text-muted);text-transform:uppercase;}
+.classified{font-size:10px;letter-spacing:3px;color:var(--gold);border:1px solid var(--gold-dim);padding:5px 14px;background:var(--gold-glow);font-family:'Rajdhani',sans-serif;text-transform:uppercase;}
+
+.vote-banner{background:rgba(201,168,76,.06);border-bottom:1px solid var(--gold-dim);padding:14px 32px;text-align:center;}
+.vote-banner-inner{max-width:920px;margin:0 auto;font-family:'Rajdhani',sans-serif;font-size:12px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;}
+.vote-banner-inner span{color:var(--text-muted);margin:0 8px;}
+
+.nav-wrap{position:sticky;top:0;z-index:100;background:rgba(5,12,20,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--navy-border);}
+.nav{max-width:920px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none;padding:0 32px;}
+.nav::-webkit-scrollbar{display:none;}
+.nav-btn{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dim);background:none;border:none;border-bottom:2px solid transparent;padding:18px 16px;cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s;}
+.nav-btn:hover{color:var(--silver);}
+.nav-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+.nav-btn.culm-tab{color:#6b2020;}
+.nav-btn.culm-tab.active{color:#c0392b;border-bottom-color:#c0392b;}
+
+.main{max-width:920px;margin:0 auto;padding:64px 32px 100px;}
+.section{display:none;animation:fadeUp .3s ease;}
+.section.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.sec-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:16px;}
+.sec-num{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);letter-spacing:3px;flex-shrink:0;}
+.sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--navy-border),transparent);}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(26px,4.5vw,48px);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:36px;letter-spacing:1px;}
+.sec-title span{color:var(--gold);}
+.sec-title .rv{color:var(--raven);}
+.sec-title .ef{color:var(--enforcer);}
+
+p{font-family:'Crimson Text',serif;font-size:17px;line-height:1.78;color:#a8bcd0;margin-bottom:22px;}
+strong{color:var(--gold-light);font-weight:600;}
+
+.callout{border-left:3px solid var(--gold-dim);background:var(--navy-light);padding:22px 28px;margin:36px 0;position:relative;}
+.callout::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--gold-dim),transparent);}
+.callout-label{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.callout p{margin:0;color:var(--silver-light);font-style:italic;}
+
+.mission-block{border:1px solid var(--gold-dim);background:linear-gradient(135deg,var(--navy-light),var(--navy-mid));padding:52px 40px;margin:40px 0;text-align:center;position:relative;overflow:hidden;}
+.mission-block::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,var(--gold-glow),transparent);pointer-events:none;}
+.mission-block::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.mission-label{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:5px;color:var(--text-dim);text-transform:uppercase;margin-bottom:24px;}
+.mission-text{font-family:'Cinzel',serif;font-size:clamp(16px,2.8vw,26px);font-weight:600;line-height:1.65;color:var(--white);position:relative;}
+.mission-text span{color:var(--gold);}
+.mission-text .rv{color:#7aa8d8;}
+.mission-text .ef{color:#d4845a;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:36px 0;}
+.col-card{padding:32px 28px;position:relative;}
+.col-raven{background:linear-gradient(135deg,#0d1a2a,var(--navy-light));border-top:3px solid var(--raven-dim);transition:border-color .2s;}
+.col-raven:hover{border-top-color:var(--raven);}
+.col-enforcer{background:linear-gradient(135deg,#1a0e08,var(--navy-light));border-top:3px solid var(--enforcer-dim);transition:border-color .2s;}
+.col-enforcer:hover{border-top-color:var(--enforcer);}
+.col-label{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;}
+.col-raven .col-label{color:var(--raven);}
+.col-enforcer .col-label{color:var(--enforcer);}
+.col-title{font-family:'Cinzel',serif;font-size:22px;font-weight:700;margin-bottom:20px;letter-spacing:1px;}
+.col-raven .col-title{color:#7aa8d8;}
+.col-enforcer .col-title{color:#d4845a;}
+.rank-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--navy-border);}
+.rank-item:last-child{border-bottom:none;}
+.rank-num{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;min-width:28px;flex-shrink:0;}
+.col-raven .rank-num{color:var(--raven);}
+.col-enforcer .rank-num{color:var(--enforcer);}
+.rank-name{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.5px;}
+.rank-desc{font-family:'Rajdhani',sans-serif;font-size:12px;color:var(--text-muted);margin-left:auto;letter-spacing:.3px;text-align:right;flex-shrink:0;}
+
+.command-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:36px 0;}
+.command-card{padding:28px;}
+.command-raven{background:linear-gradient(135deg,#0a1622,var(--navy-light));}
+.command-enforcer{background:linear-gradient(135deg,#160c06,var(--navy-light));}
+.command-neutral{background:var(--navy-light);grid-column:1 / -1;}
+.command-label{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--navy-border);}
+.command-raven .command-label{color:var(--raven);}
+.command-enforcer .command-label{color:var(--enforcer);}
+.command-neutral .command-label{color:var(--gold);}
+.command-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--navy-border);}
+.command-item:last-child{border-bottom:none;}
+.command-rank{font-family:'Cinzel',serif;font-size:13px;font-weight:600;min-width:180px;flex-shrink:0;}
+.command-raven .command-rank{color:#7aa8d8;}
+.command-enforcer .command-rank{color:#d4845a;}
+.command-neutral .command-rank{color:var(--gold-light);}
+.command-desc{font-family:'Rajdhani',sans-serif;font-size:13px;color:var(--text-muted);line-height:1.55;letter-spacing:.3px;}
+.note-pill{display:inline-block;font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border:1px solid var(--navy-border);color:var(--text-dim);margin-top:8px;}
+
+.pcs-tier{border-left:3px solid var(--navy-border);padding:16px 20px;margin-bottom:2px;background:var(--navy-light);transition:border-color .2s;}
+.pcs-tier:hover{border-left-color:var(--gold);}
+.pcs-tier-label{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.pcs-tier-name{font-family:'Cinzel',serif;font-size:17px;font-weight:600;color:var(--white);margin-bottom:6px;letter-spacing:.5px;}
+.pcs-tier-desc{font-family:'Rajdhani',sans-serif;font-size:13px;color:var(--text-muted);line-height:1.55;letter-spacing:.3px;}
+
+.system-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin:36px 0;}
+.system-card{background:var(--navy-light);padding:28px;border-top:2px solid var(--navy-border);transition:border-color .2s;}
+.system-card:hover{border-top-color:var(--gold);}
+.system-num{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;margin-bottom:10px;}
+.system-name{font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:var(--gold);margin-bottom:8px;letter-spacing:1px;}
+.system-tag{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:3px;color:var(--silver);text-transform:uppercase;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--navy-border);}
+.system-card p{font-family:'Rajdhani',sans-serif;font-size:14px;color:var(--text-muted);margin:0;line-height:1.65;letter-spacing:.3px;}
+
+.threat-clause{border:1px solid var(--navy-border);background:var(--navy-light);padding:40px;margin:36px 0;position:relative;}
+.threat-clause::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent);}
+.threat-title{font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:8px;letter-spacing:1px;}
+.threat-sub{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
+.threat-item{display:flex;gap:12px;margin-bottom:10px;font-family:'Rajdhani',sans-serif;font-size:14px;color:var(--text-muted);line-height:1.55;}
+.threat-item::before{content:'—';color:var(--text-dim);flex-shrink:0;}
+
+.defection-tier{display:flex;gap:20px;background:var(--navy-light);border:1px solid var(--navy-border);border-left:3px solid var(--navy-border);padding:20px 24px;margin-bottom:2px;transition:border-left-color .2s;}
+.defection-tier:hover{border-left-color:var(--gold);}
+.defection-rank{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:var(--gold);min-width:80px;flex-shrink:0;line-height:1.4;}
+.defection-content{flex:1;}
+.defection-title{font-family:'Cinzel',serif;font-size:16px;color:var(--white);font-weight:600;margin-bottom:6px;letter-spacing:.5px;}
+.defection-desc{font-family:'Rajdhani',sans-serif;font-size:14px;color:var(--text-muted);line-height:1.65;letter-spacing:.3px;}
+
+.trial-block{background:var(--navy-light);border:1px solid var(--navy-border);padding:32px;margin:24px 0;position:relative;}
+.trial-block::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--gold-dim),transparent);}
+.trial-num{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.trial-name{font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:16px;letter-spacing:1px;}
+.trial-rule{display:flex;gap:12px;margin-bottom:8px;font-family:'Rajdhani',sans-serif;font-size:14px;color:var(--text-muted);line-height:1.55;letter-spacing:.3px;}
+.trial-rule::before{content:'—';color:var(--text-dim);flex-shrink:0;}
+
+.event-card{background:var(--navy-light);border:1px solid var(--navy-border);padding:28px;margin-bottom:2px;display:flex;gap:20px;align-items:flex-start;}
+.event-icon{width:44px;height:44px;border:1px solid var(--gold-dim);background:var(--gold-glow);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:13px;color:var(--gold);font-weight:700;flex-shrink:0;}
+.event-content{flex:1;}
+.event-name{font-family:'Cinzel',serif;font-size:17px;font-weight:600;color:var(--white);margin-bottom:6px;letter-spacing:.5px;}
+.event-desc{font-family:'Rajdhani',sans-serif;font-size:14px;color:var(--text-muted);line-height:1.65;letter-spacing:.3px;}
+
+.rp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin:36px 0;}
+.rp-card{background:var(--navy-light);padding:28px;border-top:2px solid var(--navy-border);transition:border-color .2s;}
+.rp-card:hover{border-top-color:var(--gold);}
+.rp-num{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;margin-bottom:10px;}
+.rp-name{font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:var(--gold);margin-bottom:12px;letter-spacing:1px;}
+.rp-card p{font-family:'Rajdhani',sans-serif;font-size:14px;color:var(--text-muted);margin:0;line-height:1.65;letter-spacing:.3px;}
+
+.recruit-steps{margin:36px 0;}
+.recruit-step{display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--navy-border);align-items:flex-start;}
+.recruit-step:last-child{border-bottom:none;}
+.recruit-num{font-family:'Cinzel',serif;font-size:32px;font-weight:700;color:var(--gold-dim);line-height:1;min-width:48px;flex-shrink:0;}
+.recruit-content{flex:1;}
+.recruit-title{font-family:'Cinzel',serif;font-size:18px;font-weight:600;color:var(--white);margin-bottom:8px;letter-spacing:.5px;}
+.recruit-desc{font-family:'Rajdhani',sans-serif;font-size:14px;color:var(--text-muted);line-height:1.65;letter-spacing:.3px;}
+
+.next-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin:36px 0;}
+.next-card{background:var(--navy-light);padding:28px;border-top:2px solid var(--navy-border);}
+.next-card-label{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--navy-border);color:var(--gold);}
+.next-item{display:flex;gap:10px;margin-bottom:10px;font-family:'Rajdhani',sans-serif;font-size:14px;color:var(--text-muted);line-height:1.55;letter-spacing:.3px;}
+.next-item::before{content:'—';color:var(--text-dim);flex-shrink:0;}
+
+.task-person{margin-bottom:48px;}
+.task-header{display:flex;align-items:center;gap:16px;padding-bottom:20px;margin-bottom:4px;border-bottom:1px solid var(--navy-border);}
+.task-rank-badge{width:48px;height:48px;border:1px solid var(--gold-dim);background:var(--gold-glow);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:12px;color:var(--gold);font-weight:700;flex-shrink:0;}
+.task-name{font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:var(--white);letter-spacing:1px;}
+.task-role{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:2.5px;color:var(--text-dim);text-transform:uppercase;margin-top:2px;}
+.task-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--navy-border);align-items:flex-start;}
+.task-item:last-child{border-bottom:none;}
+.task-check{width:20px;height:20px;border:1px solid var(--navy-border);background:var(--navy);flex-shrink:0;margin-top:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.task-check:hover{border-color:var(--gold-dim);}
+.task-check.done{background:rgba(74,158,106,.15);border-color:#4a9e6a;}
+.task-check.done::after{content:'✓';font-size:12px;color:#4a9e6a;}
+.task-content{flex:1;}
+.task-title{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:600;color:var(--text);letter-spacing:.5px;margin-bottom:5px;}
+.task-detail{font-family:'Rajdhani',sans-serif;font-size:13px;color:var(--text-muted);line-height:1.6;letter-spacing:.3px;}
+.priority{font-family:'Rajdhani',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;flex-shrink:0;margin-top:2px;font-weight:600;}
+.p-high{color:var(--red-bright);border:1px solid var(--red);background:rgba(139,26,26,.15);}
+.p-med{color:var(--gold);border:1px solid var(--gold-dim);background:var(--gold-glow);}
+.p-low{color:var(--text-dim);border:1px solid var(--navy-border);}
+
+.closing-box{border:1px solid var(--navy-border);background:var(--navy-light);padding:56px 40px;text-align:center;position:relative;overflow:hidden;margin-top:48px;}
+.closing-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent);}
+.closing-big{font-family:'Cinzel',serif;font-size:clamp(20px,4vw,38px);font-weight:700;line-height:1.4;color:var(--white);margin-bottom:24px;letter-spacing:2px;}
+.closing-big span{color:var(--gold);}
+.closing-big .rv{color:var(--raven);}
+.closing-big .ef{color:var(--enforcer);}
+.closing-sig{font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;margin-top:40px;padding-top:28px;border-top:1px solid var(--navy-border);}
+
+.culm-hero{background:linear-gradient(135deg,#080202,#120404,#080202);border:1px solid var(--culm-border);padding:56px 40px;margin:0 0 48px;text-align:center;position:relative;overflow:hidden;}
+.culm-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 50%,rgba(192,57,43,.07),transparent);}
+.culm-hero::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--culm-border),transparent);}
+.culm-eyebrow{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:5px;color:var(--culm-border);text-transform:uppercase;margin-bottom:20px;position:relative;}
+.culm-title{font-family:'Cinzel',serif;font-size:clamp(32px,6vw,64px);font-weight:700;color:var(--white);letter-spacing:3px;line-height:1;margin-bottom:12px;position:relative;}
+.culm-sub{font-family:'Cinzel',serif;font-size:clamp(14px,2.5vw,22px);color:var(--culm-border);letter-spacing:6px;text-transform:uppercase;margin-bottom:28px;position:relative;}
+.culm-divider{display:flex;align-items:center;gap:16px;justify-content:center;position:relative;}
+.culm-divider-line{width:60px;height:1px;background:var(--culm-border);}
+.culm-divider-text{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:3px;color:var(--culm-border);text-transform:uppercase;}
+.culm-body p{color:#9a7070;}
+.culm-body strong{color:#c09090;}
+.culm-callout{border-left:3px solid var(--culm-border);background:rgba(18,4,4,.7);padding:22px 28px;margin:36px 0;}
+.culm-callout p{color:#b07070;margin:0;font-style:italic;}
+.phase-block{display:flex;gap:20px;background:rgba(18,4,4,.6);border:1px solid var(--culm-border);border-left:3px solid var(--culm-border);padding:20px 24px;margin-bottom:2px;}
+.phase-num{font-family:'Cinzel',serif;font-size:24px;font-weight:700;color:var(--culm-border);min-width:36px;line-height:1;margin-top:2px;}
+.phase-content{flex:1;}
+.phase-title{font-family:'Cinzel',serif;font-size:15px;color:var(--white);font-weight:600;margin-bottom:6px;letter-spacing:.5px;}
+.phase-desc{font-family:'Rajdhani',sans-serif;font-size:14px;color:#7a5050;line-height:1.65;letter-spacing:.3px;}
+
+.vote-section{border:1px solid var(--culm-border);background:rgba(8,2,2,.8);padding:40px;margin:48px 0;position:relative;}
+.vote-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--culm-border),transparent);}
+.vote-title{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--white);text-align:center;margin-bottom:8px;letter-spacing:2px;}
+.vote-sub{font-family:'Rajdhani',sans-serif;font-size:11px;letter-spacing:3px;color:var(--culm-border);text-align:center;text-transform:uppercase;margin-bottom:36px;}
+.vote-options{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;}
+.vote-opt{border:1px solid;padding:28px 24px;text-align:center;cursor:pointer;transition:all .2s;}
+.vo-continue{border-color:var(--gold-dim);background:rgba(201,168,76,.03);}
+.vo-culm{border-color:var(--culm-border);background:rgba(139,26,26,.03);}
+.vo-continue:hover,.vo-continue.selected{background:rgba(201,168,76,.1);border-color:var(--gold);}
+.vo-culm:hover,.vo-culm.selected{background:rgba(139,26,26,.12);border-color:var(--red-bright);}
+.vo-label{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+.vo-continue .vo-label{color:var(--gold-dim);}
+.vo-culm .vo-label{color:var(--culm-border);}
+.vo-title{font-family:'Cinzel',serif;font-size:18px;font-weight:700;margin-bottom:12px;}
+.vo-continue .vo-title{color:var(--gold-light);}
+.vo-culm .vo-title{color:#c09090;}
+.vo-desc{font-family:'Rajdhani',sans-serif;font-size:13px;line-height:1.6;letter-spacing:.3px;}
+.vo-continue .vo-desc{color:var(--text-muted);}
+.vo-culm .vo-desc{color:#7a5050;}
+.vo-indicator{width:20px;height:20px;border:1px solid;border-radius:50%;margin:16px auto 0;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .2s;}
+.vo-continue .vo-indicator{border-color:var(--gold-dim);color:transparent;}
+.vo-culm .vo-indicator{border-color:var(--culm-border);color:transparent;}
+.vo-continue.selected .vo-indicator{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.1);}
+.vo-culm.selected .vo-indicator{border-color:var(--red-bright);color:var(--red-bright);background:rgba(139,26,26,.1);}
+.vote-tally{background:rgba(8,2,2,.6);border:1px solid var(--navy-border);padding:20px 24px;display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:16px;}
+.tally-item{text-align:center;}
+.tally-num{font-family:'Cinzel',serif;font-size:32px;font-weight:700;line-height:1;margin-bottom:6px;}
+.tally-label{font-family:'Rajdhani',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);}
+.tc{color:var(--gold);}.tk{color:var(--culm-border);}.tn{color:var(--text-muted);}
+.vote-note{font-family:'Rajdhani',sans-serif;font-size:12px;letter-spacing:.5px;color:var(--text-dim);text-align:center;margin-top:16px;line-height:1.6;}
+.culm-close{border:1px solid var(--culm-border);background:linear-gradient(135deg,#080202,#100404);padding:48px 40px;text-align:center;position:relative;margin-top:48px;}
+.culm-close::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--culm-border),transparent);}
+.culm-close .big{font-family:'Cinzel',serif;font-size:clamp(20px,3.5vw,36px);font-weight:700;color:var(--white);line-height:1.4;margin-bottom:20px;letter-spacing:2px;}
+.culm-close .big span{color:var(--culm-border);}
+.culm-close p{color:#7a5050;font-style:italic;max-width:500px;margin:0 auto;}
+
+@media(max-width:640px){
+  .two-col,.command-grid,.system-grid,.rp-grid,.next-grid,.vote-options{grid-template-columns:1fr;}
+  .command-neutral{grid-column:1;}
+  .main{padding:40px 20px 80px;}
+  .nav{padding:0 16px;}
+  .hero{padding:56px 20px 48px;}
+  .mission-block,.closing-box,.culm-hero{padding:40px 24px;}
+  .vote-section{padding:28px 20px;}
 }
 </style>
 </head>
@@ -1122,544 +295,519 @@ em { color: var(--silver-light); font-style: italic; }
           <path d="M14 6L8 24H20L14 6Z" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.4"/>
         </svg>
       </div>
-      <div class="ct-badge-text">Cross Termination — Internal Document</div>
+      <div>
+        <div class="faction-name-block">
+          <span class="faction-name-old">Cross Termination</span>
+          <span class="faction-name-new">Contested Territory</span>
+        </div>
+      </div>
     </div>
-    <div class="hero-eyebrow">Council Briefing — Classified</div>
-    <div class="hero-title">PHASE <span>III</span></div>
-    <div class="hero-subtitle">The New Era</div>
-    <div class="hero-divider">
-      <div class="hero-divider-line"></div>
-      <div class="hero-divider-diamond"></div>
-      <div class="hero-divider-line" style="background: linear-gradient(270deg, var(--gold-dim), transparent);"></div>
+    <div class="hero-eyebrow">Council Briefing — Internal Document</div>
+    <div class="hero-kicker">Post-Eternal War Era</div>
+    <div class="hero-title">THE <span>INNER</span><br>WAR</div>
+    <div class="hero-subtitle">A New Era Begins</div>
+    <div class="vs-divider">
+      <div class="vs-side"><div class="vs-company vs-raven">Raven Company</div><div class="vs-line-r"></div></div>
+      <div class="vs-badge">VS</div>
+      <div class="vs-side" style="justify-content:flex-end;"><div class="vs-line-e"></div><div class="vs-company vs-enforcer">Enforcer Company</div></div>
     </div>
     <div class="hero-meta">
       <div class="hero-meta-item">Crown (Dlocz) &nbsp;·&nbsp; Chief of Staff</div>
-      <div class="classified-badge">Council Eyes Only</div>
+      <div class="classified">Council Eyes Only</div>
     </div>
   </div>
 </div>
 
+<div class="vote-banner">
+  <div class="vote-banner-inner">Proposal Briefing <span>·</span> Requires Majority Council Vote to Pass <span>·</span> Cannot Be Enacted by Decree</div>
+</div>
+
 <div class="nav-wrap">
   <nav class="nav">
-    <button class="nav-btn active" onclick="show('situation', this)">Situation</button>
-    <button class="nav-btn" onclick="show('mission', this)">Mission</button>
-    <button class="nav-btn" onclick="show('pillars', this)">Pillars</button>
-    <button class="nav-btn" onclick="show('changes', this)">Changes</button>
-    <button class="nav-btn" onclick="show('tasks', this)">Tasks</button>
-    <button class="nav-btn" onclick="show('timeline', this)">Timeline</button>
-    <button class="nav-btn" onclick="show('closing', this)">Closing</button>
-    <button class="nav-btn culmination-btn" onclick="show('culmination', this)">⚑ Culmination</button>
+    <button class="nav-btn active" onclick="show('origin',this)">Origin</button>
+    <button class="nav-btn" onclick="show('mission',this)">Mission</button>
+    <button class="nav-btn" onclick="show('structure',this)">Structure</button>
+    <button class="nav-btn" onclick="show('systems',this)">Systems</button>
+    <button class="nav-btn" onclick="show('defection',this)">Defection</button>
+    <button class="nav-btn" onclick="show('events',this)">Events</button>
+    <button class="nav-btn" onclick="show('rp',this)">RP & Lore</button>
+    <button class="nav-btn" onclick="show('recruitment',this)">Recruitment</button>
+    <button class="nav-btn" onclick="show('next',this)">Next Steps</button>
+    <button class="nav-btn" onclick="show('cos',this)">From CoS</button>
+    <button class="nav-btn culm-tab" onclick="show('culmination',this)">⚑ Culmination</button>
   </nav>
 </div>
 
 <div class="main">
 
-  <!-- SITUATION -->
-  <div id="situation" class="section active">
+  <div id="origin" class="section active">
     <div class="sec-eyebrow"><div class="sec-num">I</div><div class="sec-line"></div></div>
-    <div class="sec-title">The <span>Honest</span> Situation</div>
-
-    <p>CT has been in a holding pattern for about a month. That's on me. I've been developing the vision for what comes next without transferring it to the people who need to execute it. This document ends that.</p>
-
-    <p>NBTF's decision to officially address cross-teaming was a direct hit to CT's core identity. The problem we were built to solve is now being handled by the game itself. Our enforcement era — Phase I and Phase II of CT's existence — is over.</p>
-
-    <div class="callout">
-      <div class="callout-title">Note</div>
-      <p>That is not a failure. That is a completion. CT operated so visibly and so persistently that the game itself was forced to act. Most factions dissolve because they fail. We are still here because we <strong>won.</strong></p>
-    </div>
-
-    <p>But winning the original mission while standing still is how factions die slowly. The faction ecosystem in NBTF is collapsing. Unofficial groups are absorbing players because they demand nothing — no structure, no accountability, no real community. Official factions are dying one by one. <strong>HF is the only one still standing with real presence. We are the other one — barely.</strong></p>
-
-    <p>New players enter NBTF every day with no guidance. No one walks them through the map. No one explains the mechanics. No one gives them a real community before the chaos does. That is the gap CT is uniquely positioned to fill — and we already built the systems to do it.</p>
-
-    <p>CTBC, CTWC, and CTWG have existed in various stages of development for months. We built them thinking they were supplementary to enforcement. They were actually the foundation of what comes next. <strong>Phase III activates what we already built.</strong></p>
+    <div class="sec-title">The <span>Eternal War</span> Is Over</div>
+    <p>CT was built to eradicate cross-teaming in NBTF. We did it so effectively, so visibly, and so persistently that the game itself was forced to adopt our mission as official policy. The Eternal War ended not in defeat — but in <strong>total victory.</strong></p>
+    <p>Most factions dissolve because they fail. CT is still standing because it won. The crossteaming report command — the heartbeat of CT's original mission — will be preserved as a legacy system. The historic score of the Eternal War remains viewable as a permanent monument to what CT accomplished. It still functions if NBTF moderation is unavailable. But the war it was built to fight is over.</p>
+    <div class="callout"><div class="callout-label">The Legacy Pillar</div><p>The Eternal War is CT's founding monument. Every new member will know where CT came from and what it accomplished. That history never disappears — it becomes the bedrock everything new is built on.</p></div>
+    <p>With no external enemy left, CT's two companies — Ravens and Enforcers — faced a choice. Dissolve. Drift. Or turn to face each other. They chose to face each other.</p>
+    <p>The Inner War is not chaos. It is not the faction falling apart. It is <strong>organized, honorable, and endless conflict</strong> — two armies bound by the same history and the same Eternal War they won together, now locked in perpetual competition for dominance. The War Council was formed to ensure the conflict stays honorable. The Inner War has begun.</p>
+    <div class="callout"><div class="callout-label">This Is A Proposal</div><p>This document requires a majority council vote to become official CT policy. It cannot be enacted unilaterally. If passed, it triggers a full Faction-Wide Redevelopment Program — every existing CT system reviewed and amended to fit the new mission and lore. Nothing changes overnight. Everything gets evaluated deliberately and collectively.</p></div>
   </div>
 
-  <!-- MISSION -->
   <div id="mission" class="section">
     <div class="sec-eyebrow"><div class="sec-num">II</div><div class="sec-line"></div></div>
     <div class="sec-title">The New <span>Mission</span></div>
-
-    <p>The old mission was one sentence: eradicate cross-teaming in NBTF. Clear, urgent, and actionable. The new mission needs the same clarity.</p>
-
+    <div style="margin-bottom:20px;">
+      <div class="faction-name-block">
+        <span class="faction-name-old" style="font-size:13px;letter-spacing:3px;">Cross Termination</span>
+        <span class="faction-name-new" style="font-size:16px;">Contested Territory</span>
+      </div>
+    </div>
+    <p>The old mission was one sentence: eradicate cross-teaming in NBTF. Clear, urgent, and actionable. The new mission carries the same weight — and announces what CT is becoming without apology.</p>
     <div class="mission-block">
-      <div class="mission-label">CT Mission Statement — Phase III</div>
-      <div class="mission-text">CT exists to <span>welcome every new player</span> into NBTF, give them the tools to thrive, and show them what a <span>real faction</span> looks like.</div>
+      <div class="mission-label">CT Mission Statement — The Inner War Era</div>
+      <div class="mission-text">The Eternal War is won.<br><span>The Inner War has begun.</span><br>Two companies, one faction —<br><span class="rv">endless</span> honorable conflict<br>for <span class="ef">glory</span> and perseverance.<br>Only the battlefield will know.</div>
     </div>
-
-    <p>This is not a downgrade. While everything else in NBTF's faction ecosystem breaks down, CT becomes the standard — the last official faction with real structure, real progression, and real culture.</p>
-
-    <p>We are not fixing something as immediately visible as cross-teaming. We are fixing something slower and more fundamental: <strong>new players have nowhere real to land when they enter this game.</strong> CT becomes that place.</p>
-
-    <div class="callout">
-      <div class="callout-title">Legacy Advantage</div>
-      <p>No new faction can walk into NBTF with 250+ members, server-wide name recognition, and the infrastructure we have. That advantage only exists if we exploit it deliberately and immediately. New factions wish they were starting where we are. <strong>Use it.</strong></p>
-    </div>
-
-    <p>Think of Phase III as a new faction that happens to carry a legacy. Same name, same people, same history — but a fundamentally different identity, mission, and operational structure. Approach this with the energy of a <strong>launch</strong>, not a renovation.</p>
+    <p>The enemy is no longer external. <strong>The enemy is each other.</strong> Ravens and Enforcers exist to outfight, outmaneuver, and outlast the opposing company in perpetual honorable conflict. The goal is not final victory — it is dominance. Season by season, event by event, the standings tell the story of who CT's greatest warriors are.</p>
+    <div class="callout"><div class="callout-label">On The Name</div><p>The initials CT stay. The proposed new definition is <strong>Contested Territory</strong> — two armies fighting for dominance, the battlefield being the faction itself. This fits the Inner War cleanly and preserves CT's identity without erasing its history. The council may explore other definitions — this is the opening proposal, not the final word.</p></div>
   </div>
 
-  <!-- PILLARS -->
-  <div id="pillars" class="section">
+  <div id="structure" class="section">
     <div class="sec-eyebrow"><div class="sec-num">III</div><div class="sec-line"></div></div>
-    <div class="sec-title">The Three <span>Pillars</span></div>
+    <div class="sec-title">Command <span>Structure</span></div>
+    <p>The Inner War requires two parallel command structures under one neutral governing body. Executives hold neutrality. Each company has its own chain of command. The Commander serves as both field leader and War Council representative simultaneously — the bridge between company and governance.</p>
 
-    <p>Everything CT does from this point forward runs through three systems. They are not separate programs. They are one connected pipeline — each one feeding into the next.</p>
-
-    <div class="pillars">
-      <div class="pillar">
-        <div class="pillar-num">Pillar 01</div>
-        <div class="pillar-name">CTWG</div>
-        <div class="pillar-tag">The Street Team</div>
-        <p>On-call casual presence on NBTF servers. Members squad up, play together, help new players they encounter, and keep CT visible and approachable. No patrol structure. No enforcement. Presence first — branding and recruitment follow naturally.</p>
+    <div class="command-grid">
+      <div class="command-card command-neutral" style="grid-column:1/-1;">
+        <div class="command-label">The War Council — Neutral Governing Body</div>
+        <div class="command-item"><div class="command-rank">CEO</div><div class="command-desc">Potato — neutral arbiter. Final authority over the War Council. Manages the central war bank. Does not fight for either company.</div></div>
+        <div class="command-item"><div class="command-rank">COO</div><div class="command-desc">Systems — neutral arbiter. Oversees operational execution of events, scheduling, and inter-company coordination.</div></div>
+        <div class="command-item"><div class="command-rank">CHRO</div><div class="command-desc">Yep — neutral arbiter. Manages personnel, discipline, and records across both companies without allegiance to either.</div></div>
+        <div class="command-item"><div class="command-rank">CoS</div><div class="command-desc">Crown (Dlocz) — architect and advisor. Holds CT's institutional memory and guides long-term strategic direction.</div></div>
+        <p style="margin:20px 0 0;font-family:'Rajdhani',sans-serif;font-size:13px;color:var(--text-dim);letter-spacing:.3px;font-style:italic;">Executives are so committed to the war itself that they work with both sides to keep it organized and alive. Their allegiance is to the institution — not to either company's outcomes.</p>
       </div>
-      <div class="pillar">
-        <div class="pillar-num">Pillar 02</div>
-        <div class="pillar-name">CTWC</div>
-        <div class="pillar-tag">The Front Door</div>
-        <p>Internal onboarding for every new CT member before anything else. Tour Guides walk them through NBTF — map, mechanics, weapons, vehicles, and core systems. Warm, personal, low-pressure. Closes with a direct handoff to CTBC.</p>
+      <div class="command-card command-raven">
+        <div class="command-label">Raven High Command</div>
+        <div class="command-item"><div class="command-rank">Raven Commander</div><div class="command-desc">Field leader of Raven Company AND War Council representative. The bridge between company and governance — advocates for Ravens, directs operations, sets strategy.</div></div>
+        <div class="command-item"><div class="command-rank">Deputy Raven Cmdr.</div><div class="command-desc">Second in command. Steps in during Commander absence. Assists with events and internal company management.</div></div>
+        <div class="note-pill">Titles subject to council review</div>
       </div>
-      <div class="pillar">
-        <div class="pillar-num">Pillar 03</div>
-        <div class="pillar-name">CTBC</div>
-        <div class="pillar-tag">The Core</div>
-        <p>Bootcamp is now CT's primary activity and main identity. Three modules, structured progression, graduation ceremony. This is where members are made. Where Raven and Enforcer come from. Where CT's culture gets transmitted.</p>
+      <div class="command-card command-enforcer">
+        <div class="command-label">Enforcer High Command</div>
+        <div class="command-item"><div class="command-rank">Enforcer Commander</div><div class="command-desc">Field leader of Enforcer Company AND War Council representative. The bridge between company and governance — advocates for Enforcers, directs operations, sets strategy.</div></div>
+        <div class="command-item"><div class="command-rank">Deputy Enforcer Cmdr.</div><div class="command-desc">Second in command. Steps in during Commander absence. Assists with events and internal company management.</div></div>
+        <div class="note-pill">Titles subject to council review</div>
       </div>
     </div>
 
-    <div class="sec-eyebrow" style="margin-top: 52px;"><div class="sec-num">Pipeline</div><div class="sec-line"></div></div>
+    <div class="sec-eyebrow" style="margin-top:52px;"><div class="sec-num">Pacesetter Tiers — Both Companies</div><div class="sec-line"></div></div>
+    <p>Three tiers of Pacesetter exist within each company — identical structure for Ravens and Enforcers.</p>
 
-    <div class="funnel">
-      <div class="funnel-step">
-        <div class="funnel-num">01</div>
-        <div class="funnel-name">CTWG</div>
-        <div class="funnel-desc">WatchGuard squads up with a new player on the server — helps them out, talks CT, brings them in</div>
-        <div class="funnel-arrow">↓</div>
-      </div>
-      <div class="funnel-step">
-        <div class="funnel-num">02</div>
-        <div class="funnel-name">Join CT</div>
-        <div class="funnel-desc">Player officially joins the faction</div>
-        <div class="funnel-arrow">↓</div>
-      </div>
-      <div class="funnel-step">
-        <div class="funnel-num">03</div>
-        <div class="funnel-name">CTWC</div>
-        <div class="funnel-desc">Tour Guide orients them — map knowledge, game mechanics, weapons, vehicles, CT culture</div>
-        <div class="funnel-arrow">↓</div>
-      </div>
-      <div class="funnel-step">
-        <div class="funnel-num">04</div>
-        <div class="funnel-name">CTBC</div>
-        <div class="funnel-desc">Three-module bootcamp with graded progression and graduation ceremony</div>
-        <div class="funnel-arrow">↓</div>
-      </div>
-      <div class="funnel-step">
-        <div class="funnel-num">05</div>
-        <div class="funnel-name">Graduate</div>
-        <div class="funnel-desc">Placed into Raven or Enforcer — pipeline repeats with the next generation of members</div>
-        <div class="funnel-arrow">∞</div>
-      </div>
+    <div class="pcs-tier">
+      <div class="pcs-tier-label">Tier III — Senior</div>
+      <div class="pcs-tier-name">Raven / Enforcer Czar</div>
+      <div class="pcs-tier-desc">The most senior Pacesetter tier. Sits directly below the Deputy Commander. Oversees the full Pacesetter team within their company, sets event standards, and ensures operational quality across all training and activity. A Czar is a fully trusted, proven member of the company's staff structure with significant internal authority.</div>
+    </div>
+    <div class="pcs-tier">
+      <div class="pcs-tier-label">Tier II — Field</div>
+      <div class="pcs-tier-name">Field Pacesetter</div>
+      <div class="pcs-tier-desc">Confirmed field-level leadership. Hosts events independently, trains members, and drives company activity week to week. No longer under active monitoring — proven and trusted to operate without supervision. The primary event-running tier within each company.</div>
+    </div>
+    <div class="pcs-tier">
+      <div class="pcs-tier-label">Tier I — Entry</div>
+      <div class="pcs-tier-name">Trial Pacesetter</div>
+      <div class="pcs-tier-desc">Probationary entry into the Pacesetter track. Monitored directly by the company Commander and Deputy to assess fit, reliability, and leadership potential before full integration into the PCS team. Trial status is earned — not automatic — and can be revoked.</div>
     </div>
 
-    <p style="margin-top: 24px;">This pipeline is self-renewing. It does not depend on NBTF having a cross-teaming problem, server politics, or faction wars. It depends on one thing — <strong>new players entering NBTF.</strong> And that is not stopping.</p>
+    <div class="sec-eyebrow" style="margin-top:52px;"><div class="sec-num">Company Ranks</div><div class="sec-line"></div></div>
+    <div class="two-col">
+      <div class="col-card col-raven">
+        <div class="col-label">Raven Company — Facility</div>
+        <div class="col-title">Intelligence & Precision</div>
+        <div class="rank-item"><div class="rank-num">R5</div><div class="rank-name">Albatross</div><div class="rank-desc">Living legend</div></div>
+        <div class="rank-item"><div class="rank-num">R4</div><div class="rank-name">Vulture</div><div class="rank-desc">Seasoned operative</div></div>
+        <div class="rank-item"><div class="rank-num">R3</div><div class="rank-name">Eagle</div><div class="rank-desc">Elite member</div></div>
+        <div class="rank-item"><div class="rank-num">R2</div><div class="rank-name">Falcon</div><div class="rank-desc">Skilled operative</div></div>
+        <div class="rank-item"><div class="rank-num">R1</div><div class="rank-name">Owl</div><div class="rank-desc">Rookie</div></div>
+      </div>
+      <div class="col-card col-enforcer">
+        <div class="col-label">Enforcer Company — Rebel</div>
+        <div class="col-title">Brute Force & Aggression</div>
+        <div class="rank-item"><div class="rank-num">R5</div><div class="rank-name">Dreadbane</div><div class="rank-desc">Transcended warrior</div></div>
+        <div class="rank-item"><div class="rank-num">R4</div><div class="rank-name">Conqueror</div><div class="rank-desc">Decisive veteran</div></div>
+        <div class="rank-item"><div class="rank-num">R3</div><div class="rank-name">Deathbringer</div><div class="rank-desc">Elite member</div></div>
+        <div class="rank-item"><div class="rank-num">R2</div><div class="rank-name">Phantom</div><div class="rank-desc">Proficient fighter</div></div>
+        <div class="rank-item"><div class="rank-num">R1</div><div class="rank-name">Vanquisher</div><div class="rank-desc">Rookie</div></div>
+      </div>
+    </div>
+    <p style="font-family:'Rajdhani',sans-serif;font-size:13px;color:var(--text-dim);font-style:italic;letter-spacing:.3px;">Rank imagery and titles will be reviewed as part of the Redevelopment Program if this proposal passes.</p>
   </div>
 
-  <!-- CHANGES -->
-  <div id="changes" class="section">
+  <div id="systems" class="section">
     <div class="sec-eyebrow"><div class="sec-num">IV</div><div class="sec-line"></div></div>
-    <div class="sec-title">What <span>Changes</span></div>
-
-    <p>Phase III is a significant structural shift. The council needs to understand the full scope of what needs to be looked at, adjusted, or retired. Nothing on this list is optional.</p>
-
-    <div class="changes-grid">
-      <div class="change-card staying">
-        <div class="change-card-label">Stays — Non-Negotiable</div>
-        <div class="change-item">Company structure — Raven and Enforcer remain, filled through CTBC</div>
-        <div class="change-item">Full rank systems for both companies</div>
-        <div class="change-item">Pacesetter hierarchy — LPCS, DPCS, FPCS, PCS unchanged</div>
-        <div class="change-item">Executive structure — CEO, COO, CHRO, CoS</div>
-        <div class="change-item">Strike system and discipline protocols</div>
-        <div class="change-item">Retirement policy and benefits</div>
-        <div class="change-item">Alliance system (pending review)</div>
-        <div class="change-item">CT brand, name, legacy, and history</div>
-        <div class="change-item">Chairman succession plan</div>
-        <div class="change-item">Voting and decision-making structure</div>
-        <div class="change-item">CTC economy and reward system</div>
+    <div class="sec-title">Public <span>Systems</span></div>
+    <p>CT's power was always its systems. The Inner War introduces public-facing mechanics that plug regular NBTF players into CT's conflict — making CT visible, relevant, and worth joining for people who aren't members yet.</p>
+    <div class="system-grid">
+      <div class="system-card">
+        <div class="system-num">System 01</div>
+        <div class="system-name">For-Hire</div>
+        <div class="system-tag">Public Reinforcement</div>
+        <p>Any NBTF player can request backup mid-game through CTBOT. A command pings available Ravens or Enforcers based on which side needs help. Assist succeeds — core blown, core saved, objective completed — the assisting CT member earns CTC. Low commitment, high impact. Plugs the public into CT's conflict without requiring them to join.</p>
       </div>
-
-      <div class="change-card retiring">
-        <div class="change-card-label">Retiring — Archive These</div>
-        <div class="change-item">Hunt Operations — no longer primary activity</div>
-        <div class="change-item">Stakeout Operations</div>
-        <div class="change-item">Stop and Search</div>
-        <div class="change-item">Core Stakeout</div>
-        <div class="change-item">Rules of Engagement doc — enforcement-era framing</div>
-        <div class="change-item">MoW — suspend → formally retire or redefine</div>
-        <div class="change-item">MoD — review: redefine or retire</div>
-        <div class="change-item">Potential Crossteamers report system</div>
-        <div class="change-item">Confirmed Crossteamers list and threat levels</div>
-        <div class="change-item">Crossteaming Alert system</div>
+      <div class="system-card">
+        <div class="system-num">System 02</div>
+        <div class="system-name">Hitman</div>
+        <div class="system-tag">Contract Kills</div>
+        <p>Any NBTF player can place a hit on a specific target through CTBOT. Submit the target's name and a CTC bounty. CT accepts the contract. A Raven or Enforcer hunts the target in-game and submits proof of elimination. Bounty paid out on confirmed kill. Immersive, addictive, and creates ongoing engagement between CT and the broader server.</p>
       </div>
-
-      <div class="change-card adjusting">
-        <div class="change-card-label">Adjusting — Needs Rewrite</div>
-        <div class="change-item">CTWG doc — full revamp to ambassador model</div>
-        <div class="change-item">CTWC doc — repositioned as internal onboarding</div>
-        <div class="change-item">CTBC handbook — language updated to Phase III</div>
-        <div class="change-item">All executive role descriptions</div>
-        <div class="change-item">CT bylaws — mission and purpose clause</div>
-        <div class="change-item">Faction-wide recruitment messaging</div>
-        <div class="change-item">Alliance review — do current allies fit Phase III?</div>
-        <div class="change-item">Staff quota system — shift toward CTBC/CTWC activity</div>
-        <div class="change-item">Public CT description used in NBTF</div>
+      <div class="system-card">
+        <div class="system-num">System 03</div>
+        <div class="system-name">War Bank</div>
+        <div class="system-tag">Central CTC Treasury</div>
+        <p>One central CTC pool governed neutrally by the War Council. Both companies draw from it for for-hire payouts, hitman contracts, and event rewards. Neither company can access it unilaterally. Winning official war events earns the victorious company a larger share of that cycle's CTC distribution — merit-based stakes.</p>
       </div>
-
-      <div class="change-card building">
-        <div class="change-card-label">Building — Needs To Be Created</div>
-        <div class="change-item">Official Phase III faction-wide announcement</div>
-        <div class="change-item">CTWG session logging format</div>
-        <div class="change-item">CTWC Tour Guide scheduling and on-call system</div>
-        <div class="change-item">CTBC activation plan — first cycle scheduled</div>
-        <div class="change-item">Updated server channels reflecting new priorities</div>
-        <div class="change-item">New public-facing CT recruitment narrative</div>
-        <div class="change-item">MoW/MoD replacement roles (if council decides)</div>
+      <div class="system-card">
+        <div class="system-num">System 04</div>
+        <div class="system-name">War Standings</div>
+        <div class="system-tag">Season Score Tracking</div>
+        <p>Raven vs Enforcer running score across all official engagements. Updated publicly after every official war event. Season-based resets with records preserved. Visible to the whole server. The standings are CT's live scoreboard — and the primary measure of which company currently holds dominance.</p>
       </div>
     </div>
-
-    <div class="callout">
-      <p>Everything on this list needs an owner from the council. This is why this briefing exists — so the work gets distributed properly from the start. Nothing here gets carried by one person.</p>
+    <div class="threat-clause">
+      <div class="threat-title">The External Threat Clause</div>
+      <div class="threat-sub">When The Inner War Pauses</div>
+      <p style="font-family:'Rajdhani',sans-serif;font-size:14px;color:var(--text-muted);margin-bottom:20px;letter-spacing:.3px;">When the War Council unanimously determines that an external force poses a significant threat to CT, its members, or NBTF stability — the Inner War is immediately suspended. Both companies fall under unified command for the duration of the external conflict.</p>
+      <div class="threat-item">Unanimous War Council vote required to declare an external threat</div>
+      <div class="threat-item">Threat must be documented and presented to both Commanders before the vote</div>
+      <div class="threat-item">Both Commanders can contest the declaration but cannot veto it</div>
+      <div class="threat-item">Suspension reviewed every two weeks — council must reconfirm or lift</div>
+      <div class="threat-item">War standings frozen during suspension — resume exactly where they left off</div>
+      <div class="threat-item">Unanimous vote required to lift suspension and resume the Inner War</div>
+      <p style="font-family:'Crimson Text',serif;font-size:16px;color:var(--silver);font-style:italic;margin:20px 0 0;">In the Inner War, Ravens and Enforcers are enemies. But they are CT enemies — bound by the same history and the same Eternal War they won together. When something outside threatens what they built, the old alliance surfaces without hesitation. Not because they like each other. Because no outsider gets to touch what's theirs.</p>
     </div>
   </div>
 
-  <!-- TASKS -->
-  <div id="tasks" class="section">
+  <div id="defection" class="section">
     <div class="sec-eyebrow"><div class="sec-num">V</div><div class="sec-line"></div></div>
-    <div class="sec-title">Task <span>Assignments</span></div>
+    <div class="sec-title">The <span>Defection</span> System</div>
+    <p>In the Inner War, loyalty is the most sacred currency. Switching companies is not a casual decision — every rank tier faces a different cost, and every defection is <strong>one time only.</strong> Once you switch, you cannot switch again.</p>
 
-    <p>Starting assignments based on role responsibility. Ownership means accountability for seeing it through — not doing every piece of it yourself. Delegate, coordinate, and report progress to the council.</p>
-
-    <div class="task-person">
-      <div class="task-header">
-        <div class="task-rank">CEO</div>
-        <div>
-          <div class="task-name">Potato</div>
-          <div class="task-role">Chairman / Chief Executive Officer</div>
-        </div>
+    <div class="defection-tier">
+      <div class="defection-rank">Cadet<br>R1</div>
+      <div class="defection-content">
+        <div class="defection-title">Sent Back to Cadet</div>
+        <div class="defection-desc">Returned to Cadet status. Both companies get a formal opportunity to recruit and indoctrinate before the member chooses their allegiance. Once R2 requirements are met the member makes their final declaration. No event required — but no free pass. Both sides will fight for your loyalty.</div>
       </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Deliver official Phase III announcement to the faction</div>
-          <div class="task-detail">This comes from the CEO. Not CoS, not COO. Confident, forward-looking, and clear about what changes and what doesn't.</div>
-        </div>
-        <div class="priority p-high">High</div>
+    </div>
+    <div class="defection-tier">
+      <div class="defection-rank">R2<br>Falcon/<br>Phantom</div>
+      <div class="defection-content">
+        <div class="defection-title">Trial I — The Hunt</div>
+        <div class="defection-desc">No clean switches at R2. You have established yourself enough that your company will fight to keep you. Must survive Trial I to earn the right to switch.</div>
       </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Update CT bylaws — mission statement and purpose clause</div>
-          <div class="task-detail">Phase I mission statement is outdated. CEO leads the amendment with council input and approves the final version.</div>
-        </div>
-        <div class="priority p-high">High</div>
+    </div>
+    <div class="defection-tier">
+      <div class="defection-rank">R3<br>Eagle/<br>Deathbringer</div>
+      <div class="defection-content">
+        <div class="defection-title">Trial I — The Hunt (Extended)</div>
+        <div class="defection-desc">Trial I with a longer, harder time window. The more established your rank, the more brutal the hunt your company will bring.</div>
       </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Call a full council vote on MoW and MoD</div>
-          <div class="task-detail">Formally retire, redefine for Phase III, or hold suspended. Council needs a decision on record.</div>
-        </div>
-        <div class="priority p-med">Med</div>
-      </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Review alliance relationships under new identity</div>
-          <div class="task-detail">TCC and ORCA were selected for PvP collaboration. Assess whether those relationships still serve CT's Phase III direction.</div>
-        </div>
-        <div class="priority p-low">Low</div>
+    </div>
+    <div class="defection-tier">
+      <div class="defection-rank">R4–R5<br>Vulture+<br>Conqueror+</div>
+      <div class="defection-content">
+        <div class="defection-title">Trial II — The Sponsored Crossing</div>
+        <div class="defection-desc">At this rank your switch is a political event — not just a personal one. Three sponsorships from R3+ members of the opposing company required before the event is even scheduled. No sponsors, no attempt.</div>
       </div>
     </div>
 
-    <div class="task-person">
-      <div class="task-header">
-        <div class="task-rank">COO</div>
-        <div>
-          <div class="task-name">Systems</div>
-          <div class="task-role">Vice-Chairman / Chief Operating Officer</div>
-        </div>
-      </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Brief the Pacesetter team on Phase III and CTBC activation</div>
-          <div class="task-detail">Pacesetters need to understand CTBC is now the primary activity. Coordinate the briefing and ensure LPCS is aligned before rollout begins.</div>
-        </div>
-        <div class="priority p-high">High</div>
-      </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Coordinate CTWG relaunch</div>
-          <div class="task-detail">WatchGuards shift from patrol units to casual ambassador squads. Ensure Watch Commanders understand the new format and CTC payout is operational.</div>
-        </div>
-        <div class="priority p-high">High</div>
-      </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Update server channels to reflect new program priorities</div>
-          <div class="task-detail">Channel structure, pinned messages, and descriptions should reflect CTBC/CTWC/CTWG as CT's primary systems.</div>
-        </div>
-        <div class="priority p-med">Med</div>
-      </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Archive enforcement ops and docs cleanly</div>
-          <div class="task-detail">Hunt, Stakeout, Stop and Search, Core Stakeout, crossteamer systems — archive, don't delete. History stays, active status goes.</div>
-        </div>
-        <div class="priority p-med">Med</div>
-      </div>
+    <div class="trial-block">
+      <div class="trial-num">Trial I</div>
+      <div class="trial-name">The Hunt</div>
+      <p style="font-family:'Rajdhani',sans-serif;font-size:14px;color:var(--text-muted);margin-bottom:20px;letter-spacing:.3px;">The defector declares intent to the War Council. A date is set publicly — the entire company knows it's coming. On the day, the defector spawns anywhere in NBTF. Their company deploys in full to find and eliminate them.</p>
+      <div class="trial-rule">Defector gets a 2-minute head start before the hunt begins</div>
+      <div class="trial-rule">Must survive without dying once — R2: 20 minutes / R3: 30 minutes</div>
+      <div class="trial-rule">Cannot leave NBTF boundaries during the hunt</div>
+      <div class="trial-rule">Company members cannot pre-camp the defector's spawn location</div>
+      <div class="trial-rule">War Council observes and verifies — result is final</div>
+      <div class="trial-rule">Survive: switch approved at R1 of new company. Die once: denied until next cycle</div>
     </div>
-
-    <div class="task-person">
-      <div class="task-header">
-        <div class="task-rank">HR</div>
-        <div>
-          <div class="task-name">Yep</div>
-          <div class="task-role">Senior Executive / Chief Human Resources Officer</div>
-        </div>
-      </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Update all role descriptions to reflect Phase III identity</div>
-          <div class="task-detail">Any role description referencing enforcement, crossteamer hunting, or patrol ops needs updated language aligned with the onboarding mission.</div>
-        </div>
-        <div class="priority p-high">High</div>
-      </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Align new member intake process with CTWC pipeline</div>
-          <div class="task-detail">When someone joins CT, first touchpoint is CTWC — not a random channel or immediate company assignment. HR ensures intake routes correctly.</div>
-        </div>
-        <div class="priority p-high">High</div>
-      </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Update staff quota system toward CTBC and CTWC activity</div>
-          <div class="task-detail">Current quotas reference hunt ops and enforcement events. Quotas should count CTBC modules, CTWC tours, and CTWG sessions as primary qualifying activity.</div>
-        </div>
-        <div class="priority p-med">Med</div>
-      </div>
+    <div class="trial-block">
+      <div class="trial-num">Trial II</div>
+      <div class="trial-name">The Sponsored Crossing</div>
+      <p style="font-family:'Rajdhani',sans-serif;font-size:14px;color:var(--text-muted);margin-bottom:20px;letter-spacing:.3px;">Must first secure 3 sponsorships from R3+ members of the opposing company. Sponsors are publicly vouching for the crossing — their reputation is on the line. No sponsors, no attempt.</p>
+      <div class="trial-rule">War Council designates a safe zone — location changes every event</div>
+      <div class="trial-rule">3 sponsors stationed at safe zone perimeter — cannot assist until defector enters range</div>
+      <div class="trial-rule">Defector's current company deploys in full to hunt them across the map</div>
+      <div class="trial-rule">Once defector enters safe zone range — sponsors can engage and assist</div>
+      <div class="trial-rule">Defector receives one decoy — a single false location ping managed through CTBOT</div>
+      <div class="trial-rule">Hunting company cannot enter the safe zone itself</div>
+      <div class="trial-rule">Reach safe zone alive: switch approved at R2 of new company. Eliminated: denied until next cycle</div>
     </div>
-
-    <div class="task-person">
-      <div class="task-header">
-        <div class="task-rank">PCS</div>
-        <div>
-          <div class="task-name">Woush (LPCS)</div>
-          <div class="task-role">Lead Pacesetter</div>
-        </div>
-      </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Schedule and launch first CTBC cycle</div>
-          <div class="task-detail">CTBC is now CT's primary activity. Set the schedule, assign Pacesetters to modules, and ensure every active cadet has a clear path through the pipeline.</div>
-        </div>
-        <div class="priority p-high">High</div>
-      </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Identify and activate Tour Guides for CTWC</div>
-          <div class="task-detail">CTWC needs certified Tour Guides before new members flow through the pipeline. Identify candidates, get first round supervised and certified.</div>
-        </div>
-        <div class="priority p-high">High</div>
-      </div>
-      <div class="task-item">
-        <div class="task-check" onclick="this.classList.toggle('done')"></div>
-        <div class="task-content">
-          <div class="task-title">Submit weekly progress reports on pipeline activity</div>
-          <div class="task-detail">During transition: weekly updates to council on cadets in CTBC, CTWC tours run, CTWG sessions logged. This is how leadership tracks whether the pivot is working.</div>
-        </div>
-        <div class="priority p-med">Med</div>
-      </div>
-    </div>
+    <div class="callout"><div class="callout-label">Content & Recruitment Value</div><p>Every defection attempt is a public event — the whole server can watch. The defector who makes it becomes legend. The one who gets caught becomes a cautionary tale. Defection trials are CT's most dramatic recurring content and its most powerful recruitment material.</p></div>
   </div>
 
-  <!-- TIMELINE -->
-  <div id="timeline" class="section">
+  <div id="events" class="section">
     <div class="sec-eyebrow"><div class="sec-num">VI</div><div class="sec-line"></div></div>
-    <div class="sec-title">The <span>8-Week</span> Runway</div>
+    <div class="sec-title">The <span>Event</span> Structure</div>
+    <p>The Inner War runs on events. Existing CT events will be <strong>retrofitted to fit the new identity and mission</strong> — reframed around the Raven vs Enforcer conflict and Inner War lore. New events specific to the Inner War will be developed as part of the Redevelopment Program. Together they create a full calendar that keeps both companies active, competitive, and engaged.</p>
 
-    <p>Phase III is not open-ended. CT operates on a defined runway. At the end of 8 weeks the council evaluates honestly — is the pipeline working, is activity recovering, are members engaged. If yes, CT found its new identity. If no, CT closes deliberately and with dignity.</p>
+    <div class="event-card">
+      <div class="event-icon">OW</div>
+      <div class="event-content">
+        <div class="event-name">Official War Events</div>
+        <div class="event-desc">The centerpiece of the Inner War. Scheduled and announced server-wide. Full Raven vs Enforcer battle with a count system — kills, objectives, core outcomes tracked. Pre-battle lore declarations, post-battle reports in character. Winner takes the round — standings updated publicly. These are CT's biggest moments and the primary driver of the season score.</div>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-icon">PB</div>
+      <div class="event-content">
+        <div class="event-name">Practice Battles</div>
+        <div class="event-desc">Raven vs Enforcer — smaller, unranked skirmishes between official events. No standings impact. Tactics developed, new members get experience, the rivalry stays hot between scheduled events. Any Pacesetter can call a practice battle at their discretion.</div>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-icon">IS</div>
+      <div class="event-content">
+        <div class="event-name">Intra-Squad Battles</div>
+        <div class="event-desc">Same-team competition — Ravens vs Ravens, Enforcers vs Enforcers. Determines internal rankings and identifies top performers for official war events. Builds squad-level chemistry within each company. No cross-company stakes but significant internal implications for who gets deployed in the big events.</div>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-icon">DT</div>
+      <div class="event-content">
+        <div class="event-name">Defection Trials</div>
+        <div class="event-desc">Public events open to the whole server as spectators. The Hunt and The Sponsored Crossing are CT's most dramatic recurring content. High-rank defection attempts — the politics of sponsorship, the tension of the crossing, the full company hunt — draw the entire server's attention. Win or lose, every trial feeds the lore and the legend.</div>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-icon">TN</div>
+      <div class="event-content">
+        <div class="event-name">Tournaments</div>
+        <div class="event-desc">Structured competitive events — 1v1s, squad vs squad within the same company, cross-company brackets. Season-based with standings implications. Give individual members a path to personal recognition beyond company affiliation. The best fighters from both sides compete for individual legacy.</div>
+      </div>
+    </div>
+    <div class="callout"><div class="callout-label">Redevelopment Note</div><p>All existing CT events will be reviewed as part of the Redevelopment Program. Those that fit the Inner War identity get retrofitted with new lore framing and updated scoring. Those that don't get archived respectfully alongside the Eternal War records. New events specific to the Inner War era will be developed collaboratively by both companies.</p></div>
+  </div>
 
-    <p><strong>Either outcome is handled with intention. CT does not fade. We choose how this ends.</strong></p>
+  <div id="rp" class="section">
+    <div class="sec-eyebrow"><div class="sec-num">VII</div><div class="sec-line"></div></div>
+    <div class="sec-title">RP, <span>Lore</span> & Storytelling</div>
+    <p>The Inner War isn't just an operational shift. It comes with a living narrative — and that narrative is one of CT's most powerful new assets. RP and storytelling are no longer background flavor. In this era, they are <strong>front-facing and pivotal</strong> to everything CT does.</p>
 
-    <div class="timeline">
-      <div class="t-item">
-        <div class="t-week">Week 1–2 — Foundation</div>
-        <div class="t-title">Council Alignment & System Activation</div>
-        <div class="t-desc">Council reads and aligns on this briefing. CEO delivers faction-wide announcement. COO briefs the Pacesetter team. HR begins role description updates. CTWG relaunch communicated to Watch Commanders. CTWC Tour Guide pipeline activated. Server channels updated.</div>
+    <div class="rp-grid">
+      <div class="rp-card">
+        <div class="rp-num">01</div>
+        <div class="rp-name">Lore as Infrastructure</div>
+        <p>The narrative around the Eternal War ending and the Inner War beginning isn't decoration — it's the backbone of CT's new identity. Every event, every defection trial, every season result feeds into a living story. The lore is what makes a core explosion feel like a chapter in something bigger than a single match.</p>
       </div>
-      <div class="t-item">
-        <div class="t-week">Week 3–4 — First Cycle</div>
-        <div class="t-title">CTBC Cycle One Launches</div>
-        <div class="t-desc">First official CTBC cycle begins. New members routed through CTWC before entering bootcamp. CTWG sessions running regularly. Pacesetters operating under updated quotas. Bylaws amendment submitted for council vote.</div>
+      <div class="rp-card">
+        <div class="rp-num">02</div>
+        <div class="rp-name">A New Recruitment Angle</div>
+        <p>CT never had a home for players drawn to serious RP, faction lore, and character-driven gameplay. The Inner War creates one. People who want immersion — not just PvP — now have a reason to join. The ongoing narrative gives them material to engage with and a reason to stay beyond any single event.</p>
       </div>
-      <div class="t-item">
-        <div class="t-week">Week 5–6 — Evaluation</div>
-        <div class="t-title">Mid-Point Check</div>
-        <div class="t-desc">LPCS submits mid-cycle progress report. Council reviews pipeline flow, activity levels, member engagement, and recruitment numbers. Adjustments made based on real data — not assumptions. No major structural changes at this stage.</div>
+      <div class="rp-card">
+        <div class="rp-num">03</div>
+        <div class="rp-name">Seasonal Story Arcs</div>
+        <p>Each season of the Inner War has a narrative arc. Standings aren't just numbers — they're the story of which company dominated that chapter of CT's history. Season endings get documented. Upsets get remembered. The faction's history writes itself through competition, and the server follows it like an ongoing series.</p>
       </div>
-      <div class="t-item">
-        <div class="t-week">Week 7–8 — Decision</div>
-        <div class="t-title">First Graduation & Final Assessment</div>
-        <div class="t-desc">First CTBC graduation ceremony. Council holds full assessment — is the identity working? Is the pipeline self-sustaining? Decision on CT's future made on real data. If the pivot succeeds, CT continues. If not, Operation Culmination is called to a vote.</div>
+      <div class="rp-card">
+        <div class="rp-num">04</div>
+        <div class="rp-name">War Declarations & Ceremony</div>
+        <p>Every official war event opens with a formal declaration — written in character, posted publicly before the battle begins. Each company makes their statement. After the event, the result is announced with the same weight. Defection trials have their own ceremony language. The Inner War always feels like it matters because it always sounds like it matters.</p>
+      </div>
+    </div>
+
+    <div class="callout"><div class="callout-label">Stability Through Story</div><p>Factions with active lore and narrative culture retain members longer than those built purely on PvP activity. When the server is quiet, the story keeps people connected. When someone returns after inactivity, the narrative gives them something to catch up on — a reason to re-engage. The Inner War's story is CT's longest running event.</p></div>
+  </div>
+
+  <div id="recruitment" class="section">
+    <div class="sec-eyebrow"><div class="sec-num">VIII</div><div class="sec-line"></div></div>
+    <div class="sec-title">The <span>Recruitment</span> Trial</div>
+    <p>Joining CT in the Inner War era isn't just signing up. Before a recruit chooses their company, they go through three mandatory experiences designed to give them a real feel for both sides. The choice they make at the end is informed — not a guess based on a name or aesthetic.</p>
+
+    <div class="recruit-steps">
+      <div class="recruit-step">
+        <div class="recruit-num">I</div>
+        <div class="recruit-content">
+          <div class="recruit-title">The Raven Mission</div>
+          <div class="recruit-desc">The recruit accompanies Raven Company on an actual operation. No obligation, no pressure. They see how Ravens move, think, communicate, and fight — intelligence-focused, precision-oriented, facility-sided. One real mission. Not a demo, not a tour.</div>
+        </div>
+      </div>
+      <div class="recruit-step">
+        <div class="recruit-num">II</div>
+        <div class="recruit-content">
+          <div class="recruit-title">The Enforcer Mission</div>
+          <div class="recruit-desc">The recruit accompanies Enforcer Company on an actual operation. Same format — real mission, real combat, real team dynamic. Brute force, aggression, rebel-sided. The recruit experiences the full contrast between the two companies firsthand before making any decision.</div>
+        </div>
+      </div>
+      <div class="recruit-step">
+        <div class="recruit-num">III</div>
+        <div class="recruit-content">
+          <div class="recruit-title">The Deciding Battle</div>
+          <div class="recruit-desc">The recruit chooses a side for one live Inner War battle — no consequences for this choice. It is a trial run. They fight alongside their chosen company against the other in a real engagement. At the end they make their final allegiance declaration. Whatever they choose in Event III becomes their company — until they use their one lifetime defection.</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout"><div class="callout-label">Why This Works</div><p>Recruits make an informed decision based on real experience — not vibes. It also plugs new members into active events before they've officially joined a company. Their first three CT experiences are actual combat. That's a better introduction than any document or welcome message.</p></div>
+  </div>
+
+  <div id="next" class="section">
+    <div class="sec-eyebrow"><div class="sec-num">IX</div><div class="sec-line"></div></div>
+    <div class="sec-title">If <span>Passed</span> — What Comes Next</div>
+    <p>This briefing requires a majority council vote to become official CT policy. If passed, it triggers a Faction-Wide Redevelopment Program. Every existing CT system gets reviewed and amended to fit the new mission and lore. Nothing changes overnight — everything gets evaluated deliberately with full council participation.</p>
+
+    <div class="next-grid">
+      <div class="next-card">
+        <div class="next-card-label">Immediate — Week 1</div>
+        <div class="next-item">CEO delivers faction-wide announcement of the Inner War era</div>
+        <div class="next-item">War Council formally constituted — neutrality declared publicly</div>
+        <div class="next-item">Commanders appointed or elected for both companies</div>
+        <div class="next-item">Inner War standings board created and published</div>
+        <div class="next-item">CTBOT updated — for-hire and hitman commands activated</div>
+        <div class="next-item">Legacy crossteaming command preserved and archived with honor</div>
+        <div class="next-item">First official war event scheduled and announced</div>
+      </div>
+      <div class="next-card">
+        <div class="next-card-label">Redevelopment Program</div>
+        <div class="next-item">CT bylaws reviewed — mission, External Threat Clause, Defection System formally codified</div>
+        <div class="next-item">All role descriptions updated to reflect Inner War identity</div>
+        <div class="next-item">Rank imagery and titles reviewed — council decides final names</div>
+        <div class="next-item">Existing events retrofitted — archived events documented respectfully</div>
+        <div class="next-item">CT name/acronym formally voted on — Contested Territory proposed</div>
+        <div class="next-item">MoW and MoD reconsidered — possible revival in Inner War context</div>
+        <div class="next-item">New Inner War specific events developed by both companies</div>
+      </div>
+    </div>
+
+    <div class="sec-eyebrow" style="margin-top:52px;"><div class="sec-num">Task Assignments</div><div class="sec-line"></div></div>
+
+    <div class="task-person">
+      <div class="task-header">
+        <div class="task-rank-badge">CEO</div>
+        <div><div class="task-name">Potato</div><div class="task-role">Chairman / Chief Executive Officer</div></div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content"><div class="task-title">Call and moderate the majority council vote</div><div class="task-detail">This briefing exists to inform that vote. Potato sets the vote date, moderates the discussion, and delivers the official result. The proposal cannot move forward without this step.</div></div>
+        <div class="priority p-high">High</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content"><div class="task-title">Deliver faction-wide announcement if proposal passes</div><div class="task-detail">The Inner War era begins with a CEO announcement — lore-framed, dramatic, and clear. This is CT's biggest moment in years. It needs to land with weight.</div></div>
+        <div class="priority p-high">High</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content"><div class="task-title">Lead bylaw amendment process</div><div class="task-detail">Mission statement, External Threat Clause, Defection System, War Council structure — all need formal bylaw entries. CEO leads with full council input.</div></div>
+        <div class="priority p-med">Med</div>
+      </div>
+    </div>
+
+    <div class="task-person">
+      <div class="task-header">
+        <div class="task-rank-badge">COO</div>
+        <div><div class="task-name">Systems</div><div class="task-role">Vice-Chairman / Chief Operating Officer</div></div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content"><div class="task-title">Coordinate CTBOT updates — for-hire and hitman commands</div><div class="task-detail">Both public systems run through CTBOT. COO owns getting these commands functional before the Inner War officially launches to the server.</div></div>
+        <div class="priority p-high">High</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content"><div class="task-title">Build the War Standings board and season tracking</div><div class="task-detail">The standings are CT's public scoreboard — live, updated after every official event, visible to the whole server. COO owns getting this built and running.</div></div>
+        <div class="priority p-high">High</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content"><div class="task-title">Schedule first official war event before announcement drops</div><div class="task-detail">Give members something to look forward to the moment they hear about the Inner War. The announcement lands harder when there's already a date on the calendar.</div></div>
+        <div class="priority p-med">Med</div>
+      </div>
+    </div>
+
+    <div class="task-person">
+      <div class="task-header">
+        <div class="task-rank-badge">HR</div>
+        <div><div class="task-name">Yep</div><div class="task-role">Senior Executive / Chief Human Resources Officer</div></div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content"><div class="task-title">Update all role descriptions to reflect Inner War identity</div><div class="task-detail">Every description referencing enforcement, crossteamer hunting, or old CT operations needs updated language aligned with the new mission and War Council structure.</div></div>
+        <div class="priority p-high">High</div>
+      </div>
+      <div class="task-item">
+        <div class="task-check" onclick="this.classList.toggle('done')"></div>
+        <div class="task-content"><div class="task-title">Manage company allegiance records and defection tracking</div><div class="task-detail">CHRO keeps the official record of who has used their defection, who is eligible, and outcomes of each trial. A permanent HR function in the Inner War era.</div></div>
+        <div class="priority p-med">Med</div>
       </div>
     </div>
   </div>
 
-  <!-- CLOSING -->
-  <div id="closing" class="section">
-    <div class="sec-eyebrow"><div class="sec-num">VII</div><div class="sec-line"></div></div>
+  <div id="cos" class="section">
+    <div class="sec-eyebrow"><div class="sec-num">X</div><div class="sec-line"></div></div>
     <div class="sec-title">From <span>CoS</span> to Council</div>
-
-    <p>I want to be direct about something before I close this out.</p>
-
-    <p>I am CoS. I am not CEO. I am not Chairman. The ideas in this document are mine — developed over the past month because someone had to think about where CT goes from here. But developing the idea and executing the idea are two very different things, and <strong>execution is not my job alone.</strong></p>
-
-    <p>Potato — this is your faction to lead. Systems — this is your operation to run. The council as a whole owns this transition. I can support, guide, and consult — but I cannot and should not be carrying this across the finish line. That dynamic is part of what stalled us to begin with.</p>
-
-    <div class="callout">
-      <div class="callout-title">Important</div>
-      <p>Everything in this briefing is a proposal, not a decree. These are the ideas I believe give CT the best shot at a successful pivot — but I don't have all the answers and I'm not in the room the way you are. If something doesn't work, adjust it. If you see a better approach, take it. What matters is that the council is aligned on the mission and moving together.</p>
-    </div>
-
-    <p>This is a hands-on project that requires insight, contribution, and ownership from everyone on this council. I'm asking you to treat it that way.</p>
-
-    <p>CT survived leadership changes, inactivity cycles, and a war. It'll survive this too — because we're choosing to evolve instead of waiting to collapse. The pipeline is built. The systems exist. The brand still carries weight. <strong>Everything we need to succeed in Phase III we already have. The only thing missing is the council deciding to move.</strong></p>
+    <p>I want to be direct about something before this briefing closes.</p>
+    <p>I am CoS. I am not CEO. I am not Chairman. What's in this document is mine — ideas developed because someone had to think about where CT goes from here. But <strong>developing the idea and executing the idea are two very different things.</strong> Execution is not my job alone. It never should have been.</p>
+    <p>The Inner War — if passed — is CT's most ambitious undertaking since its founding. It cannot be carried by one person. It requires the full council to show up as the leaders their roles demand.</p>
+    <div class="callout"><div class="callout-label">Direct</div><p>Potato — this is your faction to lead. Systems — this is your operation to run. Yep — these are your people systems to manage. The Commanders, once appointed, own their companies entirely. I can support, guide, and consult — but I will not be the engine driving this. That dynamic is what stalled CT before and it cannot define this next era.</p></div>
+    <p>Everything in this briefing is a proposal — not a decree. It requires a majority council vote to become official. If something doesn't work, adjust it. If you see a better approach, take it. The council has full authority to amend, refine, or reject any part of this. What matters is that the decision gets made together and execution follows with genuine ownership from every person at this table.</p>
+    <p>CT survived the Eternal War. It survived leadership changes and inactivity and a full identity crisis. <strong>It will survive this transition too — if the council decides to move.</strong></p>
+    <p>The Inner War is the most CT thing CT has ever done. Two companies. One faction. Endless honorable conflict. Public players plugged in as contractors and clients. Defection trials the whole server watches. A war that never ends until something outside forces a ceasefire — and even then, it resumes the moment the threat is gone. This is what CT was always capable of becoming.</p>
 
     <div class="closing-box">
-      <div class="closing-big">Presence first.<br><span>People second.</span><br>Everything else follows.</div>
-      <p style="font-family: 'Rajdhani', sans-serif; font-size: 13px; color: var(--text-muted); letter-spacing: 1px; margin-top: 0;">CT Phase III — The New Era</p>
-      <div class="closing-sig">— Crown (Dlocz) &nbsp;·&nbsp; Chief of Staff &nbsp;·&nbsp; Phase III Briefing</div>
+      <div class="closing-big">The Eternal War is over.<br><span class="rv">Ravens</span> and <span class="ef">Enforcers</span> remain.<br><span>Let them fight.</span></div>
+      <p style="font-family:'Rajdhani',sans-serif;font-size:13px;color:var(--text-muted);letter-spacing:1px;margin:0;">CT — The Inner War Era</p>
+      <div class="closing-sig">— Crown (Dlocz) &nbsp;·&nbsp; Chief of Staff &nbsp;·&nbsp; Inner War Briefing</div>
     </div>
   </div>
 
-  <!-- OPERATION CULMINATION -->
   <div id="culmination" class="section">
-
-    <div class="culmination-hero">
-      <div class="culm-eyebrow">Council Vote — Classified Option</div>
+    <div class="culm-hero">
+      <div class="culm-eyebrow">Council Vote — The Nuclear Option</div>
       <div class="culm-title">OPERATION</div>
       <div class="culm-sub">Culmination</div>
-      <div class="culm-divider">
-        <div class="culm-divider-line"></div>
-        <div class="culm-divider-text">If the pivot fails — this is how CT ends</div>
-        <div class="culm-divider-line"></div>
-      </div>
+      <div class="culm-divider"><div class="culm-divider-line"></div><div class="culm-divider-text">If CT ends — this is how</div><div class="culm-divider-line"></div></div>
     </div>
-
     <div class="culm-body">
-      <p>This section exists because the council deserves to know the full picture. Phase III is CT's best shot at a new era. But if the 8-week runway ends and the pivot has not taken hold — activity has not recovered, the pipeline is not functioning, and leadership is still waiting on one person to keep things moving — then the council has a choice to make.</p>
-
+      <p>This section exists because the council deserves the full picture. The Inner War is CT's best shot at a new era of real, sustainable identity. But if the proposal fails to pass — or if after a defined runway it has not taken hold — the council faces one final choice.</p>
       <p>Operation Culmination is that choice. <strong>It is not a failure. It is not a retreat. It is CT deciding, on its own terms, that the mission is complete.</strong></p>
+      <div class="culm-callout"><p>CT was built to eradicate cross-teaming in NBTF. We did it so completely that the game adopted our mission as official policy. The war is over. We won. Operation Culmination is how we declare that — loudly, proudly, and in front of the entire server — before CT fades into silence on its own.</p></div>
+      <p>Most factions die quietly. Members drift, leadership goes inactive, the server sits empty. That is not how CT ends. If CT ends, it ends the way it lived — with presence, with intention, and with the whole server watching.</p>
 
-      <div class="culm-callout">
-        <p>CT was built to eradicate cross-teaming in NBTF. We did it so effectively that the game adopted our mission as official policy. The war is over. We won. Operation Culmination is how we declare that — loudly, proudly, and on our own terms — before the faction fades into silence.</p>
-      </div>
+      <div style="font-family:'Cinzel',serif;font-size:18px;color:var(--white);margin:40px 0 24px;font-weight:600;letter-spacing:1px;">What Operation Culmination Looks Like</div>
 
-      <p>Most factions die quietly. Members drift away, leadership goes inactive, and eventually the server just sits empty. That is not how CT ends. If CT ends, it ends the way it lived — with presence, with intention, and with the entire server watching.</p>
-
-      <div class="what-happens">
-        <div class="what-title">What Operation Culmination Looks Like</div>
-
-        <div class="event-phase">
-          <div class="event-num">I</div>
-          <div class="event-content">
-            <div class="event-title">The Declaration</div>
-            <div class="event-desc">CEO Potato makes the official announcement to the faction and to NBTF at large. CT formally declares the war against cross-teaming won. The announcement credits every member, every founder, every era of CT's history. This is published everywhere — Discord, NBTF, any public CT presence.</div>
-          </div>
-        </div>
-
-        <div class="event-phase">
-          <div class="event-num">II</div>
-          <div class="event-content">
-            <div class="event-title">The Archive</div>
-            <div class="event-desc">Every CT document, system, guide, and piece of history is formally archived and preserved. CTBC, CTWC, CTWG, the bylaws, the org chart, the event logs — all of it documented and stored. CT's legacy does not disappear. It becomes a record of what a faction built right looks like.</div>
-          </div>
-        </div>
-
-        <div class="event-phase">
-          <div class="event-num">III</div>
-          <div class="event-content">
-            <div class="event-title">The Final Event</div>
-            <div class="event-desc">CT hosts one final server-wide event in NBTF — open to everyone, not just CT members. A celebration of everything the faction stood for. Founders recognized. Veteran members honored. The whole server invited to play alongside CT one last time. No enforcement, no ops. Just CT being CT — together, one final time.</div>
-          </div>
-        </div>
-
-        <div class="event-phase">
-          <div class="event-num">IV</div>
-          <div class="event-content">
-            <div class="event-title">The Ceremony</div>
-            <div class="event-desc">Following the final event, a formal in-Discord closing ceremony. Founder acknowledgments. A reading of CT's history and achievements. Every member who contributed recognized by name. The faction officially disbanded with full ceremony — not deleted, not abandoned. Closed.</div>
-          </div>
-        </div>
-
-        <div class="event-phase">
-          <div class="event-num">V</div>
-          <div class="event-content">
-            <div class="event-title">The Legacy</div>
-            <div class="event-desc">The CT Discord server remains open as a read-only archive. The history, the documents, the screenshots — all preserved. Anyone who was ever part of CT can return and see what was built. The server stays. The faction ends. The legacy doesn't.</div>
-          </div>
-        </div>
-      </div>
+      <div class="phase-block"><div class="phase-num">I</div><div class="phase-content"><div class="phase-title">The Declaration</div><div class="phase-desc">CEO Potato makes the official announcement to the faction and to NBTF at large. CT formally declares the Eternal War won and the mission complete. Every member, every founder, every era credited. Published everywhere CT has a presence.</div></div></div>
+      <div class="phase-block"><div class="phase-num">II</div><div class="phase-content"><div class="phase-title">The Archive</div><div class="phase-desc">Every CT document, system, guide, and piece of history formally archived and preserved. The Eternal War record, the bylaws, the org chart, the event logs — all documented. CT's legacy does not disappear. It becomes a record of what a faction built right looks like.</div></div></div>
+      <div class="phase-block"><div class="phase-num">III</div><div class="phase-content"><div class="phase-title">The Final Event</div><div class="phase-desc">CT hosts one final server-wide event in NBTF — open to everyone. A celebration of everything the faction stood for. Founders recognized. Veterans honored. The whole server invited to play alongside CT one last time. No enforcement. No ops. Just CT being CT — together, one final time.</div></div></div>
+      <div class="phase-block"><div class="phase-num">IV</div><div class="phase-content"><div class="phase-title">The Ceremony</div><div class="phase-desc">Formal in-Discord closing ceremony. Founder acknowledgments. A reading of CT's history and achievements. Every member who contributed recognized by name. The faction officially disbanded with full ceremony — not deleted, not abandoned. Closed.</div></div></div>
+      <div class="phase-block"><div class="phase-num">V</div><div class="phase-content"><div class="phase-title">The Legacy</div><div class="phase-desc">The CT Discord remains open permanently as a read-only archive. The history, the documents, the screenshots, the Eternal War record — all preserved. Anyone who was ever part of CT can return and see what was built. The server stays. The faction ends. The legacy doesn't.</div></div></div>
 
       <div class="vote-section">
         <div class="vote-title">Council Vote</div>
-        <div class="vote-sub">To be called only if Phase III runway fails — Week 8</div>
-
+        <div class="vote-sub">Called only if the Inner War proposal fails or the runway expires without sufficient progress</div>
         <div class="vote-options">
-          <div class="vote-option pivot-opt" id="pivot-vote" onclick="castVote('pivot')">
-            <div class="vote-opt-label">Option A</div>
-            <div class="vote-opt-title">Continue</div>
-            <div class="vote-opt-desc">Extend the runway. Identify what's not working and adjust. CT continues under Phase III with revised approach.</div>
-            <div class="vote-indicator">✓</div>
+          <div class="vote-opt vo-continue" id="v-continue" onclick="castVote('continue')">
+            <div class="vo-label">Option A</div>
+            <div class="vo-title">Continue</div>
+            <div class="vo-desc">Extend the runway. Identify what's not working and adjust. CT continues with a revised approach.</div>
+            <div class="vo-indicator">✓</div>
           </div>
-          <div class="vote-option culm-opt" id="culm-vote" onclick="castVote('culmination')">
-            <div class="vote-opt-label">Option B</div>
-            <div class="vote-opt-title">Culmination</div>
-            <div class="vote-opt-desc">Declare the mission complete. Execute Operation Culmination. CT closes with full ceremony on its own terms.</div>
-            <div class="vote-indicator">✓</div>
+          <div class="vote-opt vo-culm" id="v-culm" onclick="castVote('culm')">
+            <div class="vo-label">Option B</div>
+            <div class="vo-title">Culmination</div>
+            <div class="vo-desc">Declare the mission complete. Execute Operation Culmination. CT closes with full ceremony on its own terms.</div>
+            <div class="vo-indicator">✓</div>
           </div>
         </div>
-
         <div class="vote-tally">
-          <div class="tally-item">
-            <div class="tally-num tally-pivot" id="pivot-count">0</div>
-            <div class="tally-label">Continue</div>
-          </div>
-          <div class="tally-item">
-            <div class="tally-num tally-needed">4</div>
-            <div class="tally-label">Votes needed to pass</div>
-          </div>
-          <div class="tally-item">
-            <div class="tally-num tally-culm" id="culm-count">0</div>
-            <div class="tally-label">Culmination</div>
-          </div>
+          <div class="tally-item"><div class="tally-num tc" id="c-count">0</div><div class="tally-label">Continue</div></div>
+          <div class="tally-item"><div class="tally-num tn">4</div><div class="tally-label">Votes to pass</div></div>
+          <div class="tally-item"><div class="tally-num tk" id="k-count">0</div><div class="tally-label">Culmination</div></div>
         </div>
-        <div class="vote-note">Majority vote required (4+ of 7 council votes). Chairman holds tiebreaker authority per CT bylaws.<br>This vote is only called if the Week 8 assessment determines Phase III has not taken hold.</div>
+        <div class="vote-note">Majority vote required (4+ of 7 council votes). Chairman holds tiebreaker authority per CT bylaws.<br>This vote is only called if the runway expires without sufficient progress on the Inner War.</div>
       </div>
 
-      <div class="culmination-close">
+      <div class="culm-close">
         <div class="big">CT didn't fade.<br><span>CT didn't lose.</span><br>CT decided.</div>
-        <p>Whatever the council chooses — pivot or culmination — it is chosen with intention. That is the CT way.</p>
+        <p>Whatever the council chooses — the Inner War or Culmination — it is chosen with intention. That has always been the CT way.</p>
       </div>
     </div>
   </div>
@@ -1667,31 +815,27 @@ em { color: var(--silver-light); font-style: italic; }
 </div>
 
 <script>
-  function show(id, btn) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    btn.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+function show(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+let votes={continue:0,culm:0},voted=false;
+function castVote(choice){
+  if(voted){
+    document.getElementById('v-continue').classList.remove('selected');
+    document.getElementById('v-culm').classList.remove('selected');
+    if(choice==='continue'&&votes.culm>0)votes.culm--;
+    if(choice==='culm'&&votes.continue>0)votes.continue--;
   }
-
-  let votes = { pivot: 0, culmination: 0 };
-  let voted = false;
-
-  function castVote(choice) {
-    if (voted) {
-      document.getElementById('pivot-vote').classList.remove('selected');
-      document.getElementById('culm-vote').classList.remove('selected');
-      if (votes.pivot > 0 && choice !== 'pivot') votes.pivot--;
-      if (votes.culmination > 0 && choice !== 'culmination') votes.culmination--;
-    }
-    votes[choice]++;
-    voted = true;
-    document.getElementById('pivot-vote').classList.toggle('selected', choice === 'pivot');
-    document.getElementById('culm-vote').classList.toggle('selected', choice === 'culmination');
-    document.getElementById('pivot-count').textContent = votes.pivot;
-    document.getElementById('culm-count').textContent = votes.culmination;
-  }
+  votes[choice]++;voted=true;
+  document.getElementById('v-continue').classList.toggle('selected',choice==='continue');
+  document.getElementById('v-culm').classList.toggle('selected',choice==='culm');
+  document.getElementById('c-count').textContent=votes.continue;
+  document.getElementById('k-count').textContent=votes.culm;
+}
 </script>
 </body>
 </html>
